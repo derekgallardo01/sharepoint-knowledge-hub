@@ -2,6 +2,7 @@
   "extends": "./node_modules/@microsoft/rush-stack-compiler-4.7/includes/tsconfig-web.json",
   "compilerOptions": {
     "target": "es5",
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -23,9 +24,11 @@
     ],
     "lib": [
       "es5",
+      "es6",
       "dom",
       "es2015.collection",
-      "es2015.promise"
+      "es2015.promise",
+      "es2016.array.include"
     ]
   },
   "include": [

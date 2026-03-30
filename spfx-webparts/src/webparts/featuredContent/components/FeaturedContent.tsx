@@ -19,7 +19,7 @@ import {
 } from "@fluentui/react-components";
 import {
   Star24Filled,
-  TrendingUp24Regular,
+  DataTrending24Regular,
   Eye24Regular,
   Clock24Regular,
   ChevronLeft24Regular,
@@ -29,7 +29,7 @@ import {
 } from "@fluentui/react-icons";
 
 import { IFeaturedContentProps } from "./IFeaturedContentProps";
-import { SearchService, ISearchResult } from "../../services/SearchService";
+import { SearchService, ISearchResult } from "../../../services/SearchService";
 import styles from "./FeaturedContent.module.scss";
 
 type ContentTab = "featured" | "trending";
@@ -313,7 +313,7 @@ export const FeaturedContent: React.FC<IFeaturedContentProps> = (props) => {
             Featured
           </Tab>
           {showTrending && (
-            <Tab value="trending" icon={<TrendingUp24Regular />}>
+            <Tab value="trending" icon={<DataTrending24Regular />}>
               Trending
             </Tab>
           )}

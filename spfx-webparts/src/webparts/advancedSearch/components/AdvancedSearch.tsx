@@ -44,7 +44,7 @@ import {
   IRefinerFilter,
   ISearchSuggestion,
   ISortOption,
-} from "../../services/SearchService";
+} from "../../../services/SearchService";
 import styles from "./AdvancedSearch.module.scss";
 
 type SortKey = "relevance" | "date" | "popularity";

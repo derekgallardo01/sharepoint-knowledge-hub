@@ -28,7 +28,7 @@ import {
 } from "@fluentui/react-icons";
 
 import { IRecentlyUpdatedProps } from "./IRecentlyUpdatedProps";
-import { SearchService, ISearchResult } from "../../services/SearchService";
+import { SearchService, ISearchResult } from "../../../services/SearchService";
 import styles from "./RecentlyUpdated.module.scss";
 
 type TimeRange = "today" | "week" | "month";
@@ -324,7 +324,7 @@ export const RecentlyUpdated: React.FC<IRecentlyUpdatedProps> = (props) => {
           {Array.from(groupedItems.entries()).map(([dateLabel, items]) => (
             <div key={dateLabel} className={fluentStyles.dateGroup}>
               <div className={fluentStyles.dateLabel}>
-                <Caption1 weight="semibold">{dateLabel}</Caption1>
+                <Caption1><strong>{dateLabel}</strong></Caption1>
               </div>
 
               {items.map((item) => (

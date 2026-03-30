@@ -30,7 +30,7 @@ import {
 } from "@fluentui/react-icons";
 
 import { IFaqAccordionProps } from "./IFaqAccordionProps";
-import { KnowledgeService, IFaqItem } from "../../services/KnowledgeService";
+import { KnowledgeService, IFaqItem } from "../../../services/KnowledgeService";
 import styles from "./FaqAccordion.module.scss";
 
 interface IFaqAccordionState {

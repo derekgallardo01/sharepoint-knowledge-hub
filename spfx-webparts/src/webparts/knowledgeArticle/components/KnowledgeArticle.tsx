@@ -36,7 +36,7 @@ import {
 } from "@fluentui/react-icons";
 
 import { IKnowledgeArticleProps } from "./IKnowledgeArticleProps";
-import { KnowledgeService, IKnowledgeArticle, IArticleSummary, FeedbackRating } from "../../services/KnowledgeService";
+import { KnowledgeService, IKnowledgeArticle, IArticleSummary, FeedbackRating } from "../../../services/KnowledgeService";
 import styles from "./KnowledgeArticle.module.scss";
 
 /**
@@ -310,7 +310,7 @@ export const KnowledgeArticle: React.FC<IKnowledgeArticleProps> = (props) => {
                 <BreadcrumbDivider />
               </>
             )}
-            <BreadcrumbItem current>
+            <BreadcrumbItem>
               {article.title}
             </BreadcrumbItem>
           </Breadcrumb>
