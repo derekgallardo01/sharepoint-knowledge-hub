@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub - Article Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #faf9f8; }
+        .fluent-shadow { box-shadow: 0 1.6px 3.6px rgba(0,0,0,.132), 0 0.3px 0.9px rgba(0,0,0,.108); }
+        .article-body h2 { font-size: 1.25rem; font-weight: 600; color: #323130; margin-top: 1.75rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #edebe9; }
+        .article-body p { color: #323130; line-height: 1.7; margin-bottom: 1rem; font-size: 0.9375rem; }
+        .article-body ul { color: #323130; margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-body ul li { margin-bottom: 0.5rem; font-size: 0.9375rem; line-height: 1.6; }
+        .article-body code { background: #f3f2f1; padding: 2px 6px; border-radius: 3px; font-size: 0.875rem; color: #d13438; }
+        .article-body pre { background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1rem; font-size: 0.8125rem; line-height: 1.5; }
+        .article-body pre code { background: none; color: inherit; padding: 0; }
+        .toc-link { border-left: 2px solid transparent; padding-left: 0.75rem; }
+        .toc-link:hover { border-left-color: #0078d4; background: #f3f2f1; }
+        .toc-link.active { border-left-color: #0078d4; color: #0078d4; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <!-- Office 365 Top Bar -->
+    <div class="bg-[#0078d4] h-12 flex items-center px-4 text-white">
+        <div class="flex items-center gap-4">
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-th text-lg"></i></button>
+            <span class="font-semibold text-sm">SharePoint</span>
+        </div>
+        <div class="flex-1 flex justify-center">
+            <div class="bg-white/20 rounded-md flex items-center px-3 py-1.5 w-96">
+                <i class="fas fa-search text-white/70 text-sm mr-2"></i>
+                <span class="text-white/70 text-sm">Search in SharePoint</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-bell text-sm"></i></button>
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-cog text-sm"></i></button>
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-question-circle text-sm"></i></button>
+            <div class="w-8 h-8 bg-[#5c2d91] rounded-full flex items-center justify-center text-xs font-semibold ml-2">DG</div>
+        </div>
+    </div>
+
+    <!-- Hub Navigation -->
+    <div class="bg-white border-b border-gray-200 fluent-shadow">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex items-center h-12">
+                <div class="flex items-center mr-8">
+                    <div class="w-8 h-8 bg-[#0078d4] rounded flex items-center justify-center mr-3">
+                        <i class="fas fa-book-open text-white text-sm"></i>
+                    </div>
+                    <span class="font-semibold text-[#323130] text-sm">Knowledge Hub</span>
+                </div>
+                <nav class="flex items-center gap-1 text-sm">
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Home</a>
+                    <a href="#" class="px-3 py-3 text-[#0078d4] font-semibold border-b-2 border-[#0078d4]">Knowledge Base</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Policies</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Tech Docs</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Training</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">FAQs</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 py-6">
+        <!-- Breadcrumbs -->
+        <nav class="text-sm text-[#605e5c] mb-4">
+            <a href="#" class="text-[#0078d4] hover:underline">Knowledge Hub</a>
+            <span class="mx-2 text-[#c8c6c4]">&gt;</span>
+            <a href="#" class="text-[#0078d4] hover:underline">Technical Documentation</a>
+            <span class="mx-2 text-[#c8c6c4]">&gt;</span>
+            <span class="text-[#323130]">Cloud Migration</span>
+        </nav>
+
+        <div class="flex gap-8">
+            <!-- Main Article Content -->
+            <div class="flex-1 min-w-0">
+                <!-- Article Header -->
+                <div class="bg-white rounded-lg fluent-shadow p-8 mb-6">
+                    <h1 class="text-2xl font-bold text-[#323130] mb-4">Cloud Migration Strategy Guide</h1>
+
+                    <!-- Metadata Bar -->
+                    <div class="flex items-center gap-4 text-sm text-[#605e5c] pb-5 border-b border-gray-100 mb-6 flex-wrap">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-[#5c2d91] rounded-full flex items-center justify-center text-white text-xs font-semibold">DG</div>
+                            <span class="font-medium text-[#323130]">Derek G.</span>
+                        </div>
+                        <span class="text-[#c8c6c4]">|</span>
+                        <span><i class="fas fa-calendar mr-1"></i>Updated March 28, 2026</span>
+                        <span class="text-[#c8c6c4]">|</span>
+                        <span class="bg-[#0078d4]/10 text-[#0078d4] px-2 py-0.5 rounded font-medium">IT &gt; Cloud</span>
+                        <span class="text-[#c8c6c4]">|</span>
+                        <span><i class="fas fa-eye mr-1"></i>1,247 views</span>
+                    </div>
+
+                    <!-- Article Body -->
+                    <div class="article-body">
+                        <h2 id="overview">Overview</h2>
+                        <p>This guide provides a comprehensive strategy for migrating on-premises workloads to Microsoft Azure. It covers the complete migration lifecycle from initial assessment through post-migration optimization, and is intended for IT teams, architects, and project managers involved in cloud transformation initiatives.</p>
+
+                        <h2 id="assessment">Assessment Phase</h2>
+                        <p>Before beginning any migration, conduct a thorough assessment of your current infrastructure. This involves cataloging all applications, dependencies, and data stores to understand the full scope of the migration.</p>
+                        <ul>
+                            <li><strong>Application inventory:</strong> Document all applications, their dependencies, and current resource utilization</li>
+                            <li><strong>Dependency mapping:</strong> Use Azure Migrate or similar tools to identify inter-application dependencies</li>
+                            <li><strong>Cost estimation:</strong> Use the Azure Pricing Calculator to estimate monthly cloud costs</li>
+                            <li><strong>Compliance review:</strong> Identify regulatory requirements that affect data residency and security</li>
+                            <li><strong>Risk assessment:</strong> Evaluate downtime tolerance and rollback requirements for each workload</li>
+                        </ul>
+
+                        <h2 id="strategies">Migration Strategies (The 5 Rs)</h2>
+                        <p>Choose the appropriate migration strategy for each workload based on its complexity, business value, and technical constraints:</p>
+                        <ul>
+                            <li><strong>Rehost (Lift & Shift):</strong> Move to Azure VMs with minimal changes. Fastest approach, suitable for legacy applications.</li>
+                            <li><strong>Refactor:</strong> Make minor code changes to leverage PaaS services (e.g., App Service, Azure SQL).</li>
+                            <li><strong>Rearchitect:</strong> Redesign for cloud-native patterns (microservices, serverless). Higher effort, greater long-term benefit.</li>
+                            <li><strong>Rebuild:</strong> Completely rewrite using cloud-native technologies when existing code is not salvageable.</li>
+                            <li><strong>Replace:</strong> Switch to a SaaS alternative (e.g., replace on-prem email with Exchange Online).</li>
+                        </ul>
+
+                        <!-- Info Callout Box -->
+                        <div class="bg-[#deecf9] border-l-4 border-[#0078d4] rounded-r-lg p-4 my-6">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-info-circle text-[#0078d4] mt-0.5"></i>
+                                <div>
+                                    <p class="font-semibold text-[#323130] mb-1" style="margin-bottom: 0.25rem;">Important: Landing Zone First</p>
+                                    <p class="text-[#323130]" style="margin-bottom: 0;">Before migrating any workloads, ensure your Azure Landing Zone is properly configured with networking, identity, governance policies, and management groups. Refer to the <a href="#" class="text-[#0078d4] underline">Azure Landing Zone Setup Guide</a> for details.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 id="execution">Execution Plan</h2>
+                        <p>Execute the migration in waves, starting with lower-risk workloads to build confidence and refine processes before tackling critical systems.</p>
+
+                        <pre><code># Example: Azure CLI command to start VM migration
+az resource move \
+    --ids /subscriptions/{sub-id}/resourceGroups/onprem-rg/providers/Microsoft.Compute/virtualMachines/web-server-01 \
+    --destination-group cloud-rg \
+    --destination-subscription-id {target-sub-id}</code></pre>
+
+                        <h2 id="validation">Post-Migration Validation</h2>
+                        <p>After each migration wave, perform thorough validation to ensure all workloads are functioning correctly in the cloud environment. Key validation steps include:</p>
+                        <ul>
+                            <li>Application functionality testing against pre-defined test cases</li>
+                            <li>Performance benchmarking compared to on-premises baselines</li>
+                            <li>Security posture verification using Azure Security Center</li>
+                            <li>Cost monitoring and optimization using Azure Cost Management</li>
+                            <li>DNS cutover and traffic routing verification</li>
+                        </ul>
+
+                        <h2 id="optimization">Optimization</h2>
+                        <p>Once workloads are stable in the cloud, optimize for cost, performance, and reliability. Use Azure Advisor recommendations, right-size VMs, implement auto-scaling, and review reserved instance opportunities to reduce costs by 30-60%.</p>
+                    </div>
+                </div>
+
+                <!-- Feedback Section -->
+                <div class="bg-white rounded-lg fluent-shadow p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold text-[#323130]">Was this article helpful?</h3>
+                        <button class="text-sm text-[#605e5c] hover:text-[#323130]"><i class="fas fa-print mr-1"></i> Print this article</button>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-md border border-[#107c10] text-[#107c10] hover:bg-[#107c10]/5 text-sm font-medium">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span>Yes</span>
+                            <span class="bg-[#107c10]/10 px-1.5 rounded text-xs">42</span>
+                        </button>
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-md border border-[#a19f9d] text-[#605e5c] hover:bg-gray-50 text-sm font-medium">
+                            <i class="fas fa-thumbs-down"></i>
+                            <span>No</span>
+                            <span class="bg-gray-100 px-1.5 rounded text-xs">3</span>
+                        </button>
+                    </div>
+                    <div>
+                        <textarea placeholder="Have feedback or suggestions? Let us know..." class="w-full border border-[#c8c6c4] rounded-md p-3 text-sm text-[#323130] outline-none focus:border-[#0078d4] resize-none" rows="3" disabled></textarea>
+                        <button class="mt-2 px-4 py-2 bg-[#0078d4] text-white text-sm font-semibold rounded-md hover:bg-[#106ebe]">Submit Feedback</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="w-72 flex-shrink-0">
+                <!-- Table of Contents -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-5">
+                    <h3 class="font-semibold text-[#323130] text-sm mb-3">On this page</h3>
+                    <nav class="space-y-0.5">
+                        <a href="#overview" class="toc-link active block py-1.5 text-sm text-[#0078d4]">Overview</a>
+                        <a href="#assessment" class="toc-link block py-1.5 text-sm text-[#605e5c] hover:text-[#0078d4]">Assessment Phase</a>
+                        <a href="#strategies" class="toc-link block py-1.5 text-sm text-[#605e5c] hover:text-[#0078d4]">Migration Strategies (5 Rs)</a>
+                        <a href="#execution" class="toc-link block py-1.5 text-sm text-[#605e5c] hover:text-[#0078d4]">Execution Plan</a>
+                        <a href="#validation" class="toc-link block py-1.5 text-sm text-[#605e5c] hover:text-[#0078d4]">Post-Migration Validation</a>
+                        <a href="#optimization" class="toc-link block py-1.5 text-sm text-[#605e5c] hover:text-[#0078d4]">Optimization</a>
+                    </nav>
+                </div>
+
+                <!-- About This Article -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-5">
+                    <h3 class="font-semibold text-[#323130] text-sm mb-3">About this article</h3>
+                    <div class="space-y-3 text-sm">
+                        <div>
+                            <span class="text-[#a19f9d] text-xs block">Author</span>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <div class="w-6 h-6 bg-[#5c2d91] rounded-full flex items-center justify-center text-white text-xs">DG</div>
+                                <span class="text-[#323130]">Derek G.</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-[#a19f9d] text-xs block">Created</span>
+                            <span class="text-[#323130]">January 15, 2026</span>
+                        </div>
+                        <div>
+                            <span class="text-[#a19f9d] text-xs block">Last Updated</span>
+                            <span class="text-[#323130]">March 28, 2026</span>
+                        </div>
+                        <div>
+                            <span class="text-[#a19f9d] text-xs block">Category</span>
+                            <span class="bg-[#0078d4]/10 text-[#0078d4] px-2 py-0.5 rounded text-xs font-medium">IT &gt; Cloud Services</span>
+                        </div>
+                        <div>
+                            <span class="text-[#a19f9d] text-xs block">Tags</span>
+                            <div class="flex flex-wrap gap-1 mt-0.5">
+                                <span class="bg-[#f3f2f1] text-[#605e5c] px-2 py-0.5 rounded text-xs">Azure</span>
+                                <span class="bg-[#f3f2f1] text-[#605e5c] px-2 py-0.5 rounded text-xs">Migration</span>
+                                <span class="bg-[#f3f2f1] text-[#605e5c] px-2 py-0.5 rounded text-xs">Cloud</span>
+                                <span class="bg-[#f3f2f1] text-[#605e5c] px-2 py-0.5 rounded text-xs">Infrastructure</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-[#a19f9d] text-xs block">Next Review</span>
+                            <span class="text-[#323130]">September 28, 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Articles -->
+                <div class="bg-white rounded-lg fluent-shadow p-5">
+                    <h3 class="font-semibold text-[#323130] text-sm mb-3">Related Articles</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-start gap-3 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#0078d4] to-[#005a9e] rounded flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-check-double text-white/50 text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-sm text-[#0078d4] group-hover:underline font-medium">Azure Migration Checklist</span>
+                                <span class="text-xs text-[#a19f9d] block mt-0.5">982 views</span>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-start gap-3 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#d13438] to-[#a4262c] rounded flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-shield-halved text-white/50 text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-sm text-[#0078d4] group-hover:underline font-medium">Cloud Security Best Practices</span>
+                                <span class="text-xs text-[#a19f9d] block mt-0.5">756 views</span>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-start gap-3 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#107c10] to-[#0b5c0b] rounded flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-building text-white/50 text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-sm text-[#0078d4] group-hover:underline font-medium">Azure Landing Zone Setup</span>
+                                <span class="text-xs text-[#a19f9d] block mt-0.5">645 views</span>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-start gap-3 group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#ca5010] to-[#a1400c] rounded flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chart-line text-white/50 text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-sm text-[#0078d4] group-hover:underline font-medium">Azure Cost Optimization Guide</span>
+                                <span class="text-xs text-[#a19f9d] block mt-0.5">498 views</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

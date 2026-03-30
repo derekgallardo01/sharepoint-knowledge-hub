@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sharepoint-knowledge-hub-webparts",
+    "id": "a3c2e4f0-8b1d-4e6a-9f2c-7d5b3a1e8c4f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "Knowledge Hub Team",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "SharePoint Online Knowledge Hub web parts for enterprise knowledge management."
+      },
+      "longDescription": {
+        "default": "A comprehensive suite of five SPFx web parts providing knowledge article viewing, advanced search, featured content, FAQ management, and recently updated content feeds for SharePoint Online."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": [
+        "Content Management",
+        "Knowledge Management"
+      ]
+    },
+    "features": [
+      {
+        "title": "Knowledge Hub Web Parts",
+        "description": "Deploys all five Knowledge Hub web parts to the site.",
+        "id": "b4d3e5f1-9c2a-4f7b-8d1e-6a3c5b2d9e0f",
+        "version": "1.0.0.0"
+      }
+    ],
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Sites.Read.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Sites.ReadWrite.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "ExternalItem.Read.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Files.Read.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.Read"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sharepoint-knowledge-hub-webparts.sppkg"
+  }
+}

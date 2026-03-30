@@ -1,0 +1,184 @@
+{
+  "resultSource": {
+    "name": "Knowledge Hub Content",
+    "description": "Scoped result source returning only Knowledge Hub content types and sites.",
+    "queryTransform": "{searchTerms} (contenttype:\"Knowledge Article\" OR contenttype:\"FAQ Item\" OR contenttype:\"Policy Document\" OR contenttype:\"Training Material\") (path:\"{Site.URL}\" OR path:\"{Site.URL}/sites/KH-*\")",
+    "protocol": "Local",
+    "provider": "Local SharePoint"
+  },
+  "managedProperties": [
+    {
+      "name": "KHCategory",
+      "type": "Text",
+      "crawledProperties": ["ows_taxId_KHCategory", "ows_KHCategory"],
+      "searchable": true,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": false,
+      "description": "Knowledge article category (taxonomy term)."
+    },
+    {
+      "name": "KHDepartment",
+      "type": "Text",
+      "crawledProperties": ["ows_taxId_KHDepartment", "ows_KHDepartment"],
+      "searchable": true,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": false,
+      "description": "Owning department (taxonomy term)."
+    },
+    {
+      "name": "KHTags",
+      "type": "Text",
+      "crawledProperties": ["ows_KHTags"],
+      "searchable": true,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": false,
+      "sortable": false,
+      "description": "Semicolon-separated tags."
+    },
+    {
+      "name": "KHStatus",
+      "type": "Text",
+      "crawledProperties": ["ows_KHStatus"],
+      "searchable": false,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": true,
+      "description": "Content lifecycle status."
+    },
+    {
+      "name": "KHReviewDate",
+      "type": "DateTime",
+      "crawledProperties": ["ows_KHReviewDate"],
+      "searchable": false,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": true,
+      "description": "Next scheduled review date."
+    },
+    {
+      "name": "KHViewCount",
+      "type": "Integer",
+      "crawledProperties": ["ows_KHViewCount"],
+      "searchable": false,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": false,
+      "sortable": true,
+      "description": "Number of article views."
+    },
+    {
+      "name": "KHDifficulty",
+      "type": "Text",
+      "crawledProperties": ["ows_KHDifficulty"],
+      "searchable": false,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": false,
+      "description": "Training material difficulty level."
+    },
+    {
+      "name": "KHAudience",
+      "type": "Text",
+      "crawledProperties": ["ows_taxId_KHAudience", "ows_KHAudience"],
+      "searchable": true,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": false,
+      "description": "Target audience (taxonomy term)."
+    },
+    {
+      "name": "KHEffectiveDate",
+      "type": "DateTime",
+      "crawledProperties": ["ows_KHEffectiveDate"],
+      "searchable": false,
+      "queryable": true,
+      "retrievable": true,
+      "refinable": true,
+      "sortable": true,
+      "description": "Policy effective date."
+    }
+  ],
+  "searchVerticals": [
+    {
+      "name": "Articles",
+      "queryTemplate": "{searchTerms} contenttype:\"Knowledge Article\"",
+      "icon": "ReadingMode",
+      "description": "Knowledge base articles",
+      "enabled": true
+    },
+    {
+      "name": "FAQs",
+      "queryTemplate": "{searchTerms} contenttype:\"FAQ Item\"",
+      "icon": "QandA",
+      "description": "Frequently asked questions",
+      "enabled": true
+    },
+    {
+      "name": "Policies",
+      "queryTemplate": "{searchTerms} contenttype:\"Policy Document\"",
+      "icon": "Shield",
+      "description": "Policy and compliance documents",
+      "enabled": true
+    },
+    {
+      "name": "Training",
+      "queryTemplate": "{searchTerms} contenttype:\"Training Material\"",
+      "icon": "Education",
+      "description": "Training and learning materials",
+      "enabled": true
+    }
+  ],
+  "refinerConfiguration": [
+    {
+      "managedProperty": "KHCategory",
+      "displayName": "Category",
+      "displayType": "Multi-value",
+      "maxValues": 15,
+      "sortOrder": 1
+    },
+    {
+      "managedProperty": "KHDepartment",
+      "displayName": "Department",
+      "displayType": "Multi-value",
+      "maxValues": 15,
+      "sortOrder": 2
+    },
+    {
+      "managedProperty": "ContentType",
+      "displayName": "Content Type",
+      "displayType": "Multi-value",
+      "maxValues": 10,
+      "sortOrder": 3
+    },
+    {
+      "managedProperty": "LastModifiedTime",
+      "displayName": "Date Range",
+      "displayType": "Intervals",
+      "intervals": ["Past 24 hours", "Past week", "Past month", "Past 6 months", "Past year"],
+      "sortOrder": 4
+    },
+    {
+      "managedProperty": "Author",
+      "displayName": "Author",
+      "displayType": "Multi-value",
+      "maxValues": 10,
+      "sortOrder": 5
+    },
+    {
+      "managedProperty": "KHStatus",
+      "displayName": "Status",
+      "displayType": "Multi-value",
+      "maxValues": 5,
+      "sortOrder": 6
+    }
+  ]
+}

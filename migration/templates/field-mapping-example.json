@@ -1,0 +1,73 @@
+{
+  "description": "Field mapping configuration for Import-ContentFromCsv.ps1. Maps source CSV column names to SharePoint list internal field names with type and validation information.",
+  "sourceFile": "article-import-template.csv",
+  "targetList": "Knowledge Articles",
+  "mappings": [
+    {
+      "sourceColumn": "Title",
+      "targetField": "Title",
+      "type": "Text",
+      "required": true,
+      "description": "Article title (max 255 characters)."
+    },
+    {
+      "sourceColumn": "Body",
+      "targetField": "KHBody",
+      "type": "Note",
+      "required": true,
+      "description": "Full HTML article content."
+    },
+    {
+      "sourceColumn": "Description",
+      "targetField": "KHDescription",
+      "type": "Text",
+      "required": false,
+      "description": "Short summary for cards and search results."
+    },
+    {
+      "sourceColumn": "Category",
+      "targetField": "KHCategory",
+      "type": "TaxonomyFieldType",
+      "termSetName": "Categories",
+      "required": true,
+      "description": "Primary category from the Knowledge Hub taxonomy. Must match an existing term label."
+    },
+    {
+      "sourceColumn": "Department",
+      "targetField": "KHDepartment",
+      "type": "TaxonomyFieldType",
+      "termSetName": "Departments",
+      "required": true,
+      "description": "Owning department. Must match an existing term label."
+    },
+    {
+      "sourceColumn": "Tags",
+      "targetField": "KHTags",
+      "type": "Text",
+      "required": false,
+      "description": "Semicolon-separated keywords for search and related content matching."
+    },
+    {
+      "sourceColumn": "ReviewDate",
+      "targetField": "KHReviewDate",
+      "type": "DateTime",
+      "required": false,
+      "description": "Date when this content should be reviewed. Format: YYYY-MM-DD."
+    },
+    {
+      "sourceColumn": "Status",
+      "targetField": "KHStatus",
+      "type": "Choice",
+      "required": true,
+      "defaultValue": "Draft",
+      "description": "Content lifecycle status. Allowed values: Draft, In Review, Published, Archived."
+    },
+    {
+      "sourceColumn": "ThumbnailUrl",
+      "targetField": "KHThumbnailUrl",
+      "type": "Text",
+      "required": false,
+      "description": "URL to thumbnail image. Can be a relative or absolute URL."
+    }
+  ]
+}

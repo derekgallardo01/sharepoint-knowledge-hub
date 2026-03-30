@@ -1,0 +1,60 @@
+@import '~@fluentui/react/dist/sass/References';
+
+.carouselCard {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carouselContent {
+  display: flex;
+  min-height: 320px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.carouselImageArea {
+  width: 45%;
+  min-height: 320px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-height: 200px;
+  }
+}
+
+.carouselTextArea {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+}
+
+// Animation for cards entering the grid
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:global(.fui-Card) {
+  animation: fadeInUp 0.3s ease forwards;
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "knowledge-article-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/knowledgeArticle/KnowledgeArticleWebPart.js",
+          "manifest": "./src/webparts/knowledgeArticle/KnowledgeArticleWebPart.manifest.json"
+        }
+      ]
+    },
+    "advanced-search-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/advancedSearch/AdvancedSearchWebPart.js",
+          "manifest": "./src/webparts/advancedSearch/AdvancedSearchWebPart.manifest.json"
+        }
+      ]
+    },
+    "featured-content-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/featuredContent/FeaturedContentWebPart.js",
+          "manifest": "./src/webparts/featuredContent/FeaturedContentWebPart.manifest.json"
+        }
+      ]
+    },
+    "faq-accordion-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/faqAccordion/FaqAccordionWebPart.js",
+          "manifest": "./src/webparts/faqAccordion/FaqAccordionWebPart.manifest.json"
+        }
+      ]
+    },
+    "recently-updated-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/recentlyUpdated/RecentlyUpdatedWebPart.js",
+          "manifest": "./src/webparts/recentlyUpdated/RecentlyUpdatedWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {}
+}

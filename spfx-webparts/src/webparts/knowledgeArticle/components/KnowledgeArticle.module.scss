@@ -1,0 +1,125 @@
+@import '~@fluentui/react/dist/sass/References';
+
+.articleRoot {
+  font-family: var(--fontFamilyBase);
+  color: var(--colorNeutralForeground1);
+
+  @media print {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.errorContainer {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.breadcrumb {
+  margin-bottom: 16px;
+
+  a {
+    color: var(--colorBrandForeground1);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+.actionBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  @media print {
+    display: none;
+  }
+}
+
+.articleTitle {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+  color: var(--colorNeutralForeground1);
+}
+
+.articleMeta {
+  margin-bottom: 8px;
+  color: var(--colorNeutralForeground3);
+}
+
+.wideLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.relatedSection {
+  margin-top: 24px;
+
+  @media print {
+    page-break-before: always;
+  }
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.feedbackButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.feedbackForm {
+  margin-top: 12px;
+  max-width: 600px;
+
+  @media print {
+    display: none;
+  }
+}
+
+// Print styles
+@media print {
+  .articleRoot {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  .articleTitle {
+    font-size: 24pt;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+}

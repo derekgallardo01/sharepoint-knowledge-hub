@@ -1,0 +1,148 @@
+{
+  "name": "KH - Content Review Reminder",
+  "description": "Weekly recurrence flow that identifies articles past their review date, notifies content owners, and escalates overdue items to managers after a grace period.",
+  "trigger": {
+    "type": "Recurrence",
+    "inputs": {
+      "frequency": "Week",
+      "interval": 1,
+      "schedule": {
+        "weekDays": ["Monday"],
+        "hours": [9],
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "name": "Initialize_Variables",
+      "actions": [
+        {
+          "name": "Init_TodayDate",
+          "type": "InitializeVariable",
+          "inputs": {
+            "name": "TodayDate",
+            "type": "string",
+            "value": "@{utcNow()}"
+          }
+        },
+        {
+          "name": "Init_GracePeriodDate",
+          "type": "InitializeVariable",
+          "inputs": {
+            "name": "GracePeriodDate",
+            "type": "string",
+            "value": "@{addDays(utcNow(), -14)}",
+            "description": "14-day grace period before escalation"
+          }
+        },
+        {
+          "name": "Init_OverdueCount",
+          "type": "InitializeVariable",
+          "inputs": { "name": "OverdueCount", "type": "integer", "value": 0 }
+        },
+        {
+          "name": "Init_ReminderCount",
+          "type": "InitializeVariable",
+          "inputs": { "name": "ReminderCount", "type": "integer", "value": 0 }
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "name": "Get_Articles_Past_Review_Date",
+      "type": "SharePointGetItems",
+      "inputs": {
+        "site": "{KnowledgeHubSiteUrl}",
+        "list": "Knowledge Articles",
+        "filter": "KHReviewDate le '@{variables('TodayDate')}' and KHStatus eq 'Published'",
+        "top": 500
+      }
+    },
+    {
+      "step": 3,
+      "name": "Apply_To_Each_Article",
+      "type": "ForEach",
+      "foreach": "@outputs('Get_Articles_Past_Review_Date')?['body/value']",
+      "actions": [
+        {
+          "step": "3a",
+          "name": "Check_If_Escalation_Needed",
+          "type": "If",
+          "expression": "@less(items('Apply_To_Each_Article')?['KHReviewDate'], variables('GracePeriodDate'))",
+          "description": "If review date is more than 14 days past, escalate to manager",
+          "ifTrue": [
+            {
+              "step": "3a-i",
+              "name": "Get_Owner_Manager",
+              "type": "Office365GetManagerV2",
+              "inputs": {
+                "userId": "@{items('Apply_To_Each_Article')?['Author/Email']}"
+              }
+            },
+            {
+              "step": "3a-ii",
+              "name": "Send_Escalation_Email",
+              "type": "SendEmailV2",
+              "inputs": {
+                "to": "@{outputs('Get_Owner_Manager')?['body/mail']}",
+                "cc": "@{items('Apply_To_Each_Article')?['Author/Email']}",
+                "subject": "OVERDUE: Knowledge article requires urgent review - @{items('Apply_To_Each_Article')?['Title']}",
+                "body": "<h2>Overdue Content Review Escalation</h2><p>The following knowledge article is significantly past its scheduled review date and requires immediate attention.</p><table style='border-collapse:collapse;width:100%'><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Article</td><td style='padding:8px'>@{items('Apply_To_Each_Article')?['Title']}</td></tr><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Author</td><td style='padding:8px'>@{items('Apply_To_Each_Article')?['Author/DisplayName']}</td></tr><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Category</td><td style='padding:8px'>@{items('Apply_To_Each_Article')?['KHCategory/Label']}</td></tr><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Review Date</td><td style='padding:8px;color:red'><strong>@{formatDateTime(items('Apply_To_Each_Article')?['KHReviewDate'], 'MMMM d, yyyy')}</strong></td></tr></table><p>Please ensure this article is reviewed, updated if necessary, and the review date is extended.</p><p><a href=\"@{items('Apply_To_Each_Article')?['{Link}']}\">Open Article</a></p>",
+                "importance": "High"
+              }
+            },
+            {
+              "step": "3a-iii",
+              "name": "Increment_Overdue",
+              "type": "IncrementVariable",
+              "inputs": { "name": "OverdueCount", "value": 1 }
+            }
+          ],
+          "ifFalse": [
+            {
+              "step": "3b-i",
+              "name": "Send_Reminder_Email",
+              "type": "SendEmailV2",
+              "inputs": {
+                "to": "@{items('Apply_To_Each_Article')?['Author/Email']}",
+                "subject": "Reminder: Knowledge article due for review - @{items('Apply_To_Each_Article')?['Title']}",
+                "body": "<h2>Content Review Reminder</h2><p>The following knowledge article is due for review. Please verify the content is still accurate and update the review date.</p><table style='border-collapse:collapse;width:100%'><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Article</td><td style='padding:8px'>@{items('Apply_To_Each_Article')?['Title']}</td></tr><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Category</td><td style='padding:8px'>@{items('Apply_To_Each_Article')?['KHCategory/Label']}</td></tr><tr><td style='padding:8px;font-weight:bold;background:#f5f5f5'>Review Date</td><td style='padding:8px'>@{formatDateTime(items('Apply_To_Each_Article')?['KHReviewDate'], 'MMMM d, yyyy')}</td></tr></table><p>After reviewing, please update the Review Date field to the next scheduled review.</p><p><a href=\"@{items('Apply_To_Each_Article')?['{Link}']}\">Open Article</a></p>",
+                "importance": "Normal"
+              }
+            },
+            {
+              "step": "3b-ii",
+              "name": "Increment_Reminder",
+              "type": "IncrementVariable",
+              "inputs": { "name": "ReminderCount", "value": 1 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "name": "Send_Admin_Summary",
+      "type": "If",
+      "expression": "@greater(add(variables('OverdueCount'), variables('ReminderCount')), 0)",
+      "ifTrue": [
+        {
+          "name": "Notify_KH_Admins",
+          "type": "SendEmailV2",
+          "inputs": {
+            "to": "{KnowledgeHubAdminEmail}",
+            "subject": "Knowledge Hub Weekly Review Summary - @{formatDateTime(utcNow(), 'MMMM d, yyyy')}",
+            "body": "<h2>Weekly Content Review Summary</h2><p>The following content review actions were taken this week:</p><ul><li><strong>Reminders sent:</strong> @{variables('ReminderCount')}</li><li><strong>Escalations sent:</strong> @{variables('OverdueCount')}</li></ul><p>Total articles requiring review: @{add(variables('OverdueCount'), variables('ReminderCount'))}</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "connections": [
+    { "name": "SharePoint", "type": "shared_sharepointonline" },
+    { "name": "Office 365 Users", "type": "shared_office365users" },
+    { "name": "Office 365 Outlook", "type": "shared_office365" }
+  ]
+}

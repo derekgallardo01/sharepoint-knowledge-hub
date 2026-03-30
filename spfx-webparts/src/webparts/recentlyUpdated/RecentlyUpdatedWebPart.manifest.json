@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "a5e6f7a8-b9c0-d1e2-f3a4-b5c6d7e8f9a0",
+  "alias": "RecentlyUpdatedWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": [
+    "SharePointWebPart"
+  ],
+  "preconfiguredEntries": [
+    {
+      "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+      "group": {
+        "default": "Knowledge Hub"
+      },
+      "title": {
+        "default": "Recently Updated"
+      },
+      "description": {
+        "default": "Timeline-style feed of recently created and modified knowledge content."
+      },
+      "officeFabricIconFontName": "Clock",
+      "properties": {
+        "itemCount": 10,
+        "sourceLists": "Knowledge Articles,FAQs",
+        "defaultTimeRange": "week",
+        "defaultViewMode": "compact"
+      }
+    }
+  ]
+}

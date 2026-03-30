@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub - FAQs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #faf9f8; }
+        .fluent-shadow { box-shadow: 0 1.6px 3.6px rgba(0,0,0,.132), 0 0.3px 0.9px rgba(0,0,0,.108); }
+        .accordion-item { transition: all 0.2s ease; }
+        .accordion-item:hover { border-color: #0078d4; }
+        .pill-active { background: #0078d4; color: white; }
+        .pill-inactive { background: white; color: #605e5c; border: 1px solid #c8c6c4; }
+        .pill-inactive:hover { background: #f3f2f1; border-color: #8a8886; }
+    </style>
+</head>
+<body>
+    <!-- Office 365 Top Bar -->
+    <div class="bg-[#0078d4] h-12 flex items-center px-4 text-white">
+        <div class="flex items-center gap-4">
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-th text-lg"></i></button>
+            <span class="font-semibold text-sm">SharePoint</span>
+        </div>
+        <div class="flex-1 flex justify-center">
+            <div class="bg-white/20 rounded-md flex items-center px-3 py-1.5 w-96">
+                <i class="fas fa-search text-white/70 text-sm mr-2"></i>
+                <span class="text-white/70 text-sm">Search in SharePoint</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-bell text-sm"></i></button>
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-cog text-sm"></i></button>
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-question-circle text-sm"></i></button>
+            <div class="w-8 h-8 bg-[#5c2d91] rounded-full flex items-center justify-center text-xs font-semibold ml-2">DG</div>
+        </div>
+    </div>
+
+    <!-- Hub Navigation -->
+    <div class="bg-white border-b border-gray-200 fluent-shadow">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex items-center h-12">
+                <div class="flex items-center mr-8">
+                    <div class="w-8 h-8 bg-[#0078d4] rounded flex items-center justify-center mr-3">
+                        <i class="fas fa-book-open text-white text-sm"></i>
+                    </div>
+                    <span class="font-semibold text-[#323130] text-sm">Knowledge Hub</span>
+                </div>
+                <nav class="flex items-center gap-1 text-sm">
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Home</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Knowledge Base</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Policies</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Tech Docs</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Training</a>
+                    <a href="#" class="px-3 py-3 text-[#0078d4] font-semibold border-b-2 border-[#0078d4]">FAQs</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <h1 class="text-2xl font-bold text-[#323130] mb-2">Frequently Asked Questions</h1>
+        <p class="text-[#605e5c] text-sm mb-6">Find quick answers to common questions. Use the search or filter by category to find what you need.</p>
+
+        <!-- Search Bar -->
+        <div class="bg-white rounded-lg fluent-shadow flex items-center px-4 py-3 mb-5">
+            <i class="fas fa-search text-[#a19f9d] mr-3"></i>
+            <input type="text" placeholder="Search FAQs..." class="flex-1 text-[#323130] text-sm outline-none" disabled>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <button class="pill-active px-4 py-1.5 rounded-full text-sm font-medium">All <span class="ml-1 opacity-80">(45)</span></button>
+            <button class="pill-inactive px-4 py-1.5 rounded-full text-sm font-medium">IT <span class="ml-1 opacity-60">(12)</span></button>
+            <button class="pill-inactive px-4 py-1.5 rounded-full text-sm font-medium">HR <span class="ml-1 opacity-60">(8)</span></button>
+            <button class="pill-inactive px-4 py-1.5 rounded-full text-sm font-medium">Finance <span class="ml-1 opacity-60">(6)</span></button>
+            <button class="pill-inactive px-4 py-1.5 rounded-full text-sm font-medium">Operations <span class="ml-1 opacity-60">(10)</span></button>
+            <button class="pill-inactive px-4 py-1.5 rounded-full text-sm font-medium">Getting Started <span class="ml-1 opacity-60">(9)</span></button>
+        </div>
+
+        <!-- FAQ Accordion Items -->
+        <div class="space-y-3">
+            <!-- Expanded FAQ 1 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border-l-4 border-l-[#0078d4] overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#0078d4]/10 text-[#0078d4] text-xs font-semibold px-2 py-0.5 rounded">IT</span>
+                        <h3 class="font-semibold text-[#323130] text-sm">How do I reset my password?</h3>
+                    </div>
+                    <i class="fas fa-chevron-up text-[#0078d4] text-sm"></i>
+                </div>
+                <div class="px-5 pb-5 border-t border-gray-100 pt-4">
+                    <div class="text-sm text-[#323130] leading-relaxed space-y-2">
+                        <p>To reset your password, follow these steps:</p>
+                        <ol class="list-decimal pl-5 space-y-1.5">
+                            <li>Navigate to <a href="#" class="text-[#0078d4] underline">https://mysignins.microsoft.com</a></li>
+                            <li>Click on <strong>"Security info"</strong> in the left navigation</li>
+                            <li>Select <strong>"Change password"</strong></li>
+                            <li>Enter your current password and your new password (must be at least 12 characters with uppercase, lowercase, numbers, and special characters)</li>
+                            <li>Click <strong>"Submit"</strong> to save your new password</li>
+                        </ol>
+                        <p class="mt-3">If you are locked out and cannot access your account, contact the IT Help Desk at <strong>ext. 4357</strong> or email <a href="#" class="text-[#0078d4] underline">helpdesk@contoso.com</a>.</p>
+                    </div>
+                    <div class="flex items-center gap-4 mt-4 pt-3 border-t border-gray-100">
+                        <span class="text-xs text-[#605e5c]">Was this helpful?</span>
+                        <button class="flex items-center gap-1 text-xs text-[#107c10] hover:bg-[#107c10]/5 px-2 py-1 rounded">
+                            <i class="fas fa-thumbs-up"></i> Yes <span class="text-[#a19f9d]">(23)</span>
+                        </button>
+                        <button class="flex items-center gap-1 text-xs text-[#605e5c] hover:bg-gray-50 px-2 py-1 rounded">
+                            <i class="fas fa-thumbs-down"></i> No <span class="text-[#a19f9d]">(2)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expanded FAQ 2 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border-l-4 border-l-[#0078d4] overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#0078d4]/10 text-[#0078d4] text-xs font-semibold px-2 py-0.5 rounded">IT</span>
+                        <h3 class="font-semibold text-[#323130] text-sm">What is the VPN setup process?</h3>
+                    </div>
+                    <i class="fas fa-chevron-up text-[#0078d4] text-sm"></i>
+                </div>
+                <div class="px-5 pb-5 border-t border-gray-100 pt-4">
+                    <div class="text-sm text-[#323130] leading-relaxed space-y-2">
+                        <p>To connect to the corporate VPN:</p>
+                        <ol class="list-decimal pl-5 space-y-1.5">
+                            <li>Download the <strong>GlobalProtect VPN Client</strong> from the <a href="#" class="text-[#0078d4] underline">Software Center</a></li>
+                            <li>Install the client and restart your computer</li>
+                            <li>Open GlobalProtect and enter the portal address: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs text-[#d13438]">vpn.contoso.com</code></li>
+                            <li>Authenticate with your corporate credentials and complete the MFA prompt</li>
+                            <li>Click <strong>"Connect"</strong> -- the status should show "Connected"</li>
+                        </ol>
+                        <p class="mt-3">For detailed instructions with screenshots, see the full <a href="#" class="text-[#0078d4] underline">VPN Setup Guide</a>.</p>
+                    </div>
+                    <div class="flex items-center gap-4 mt-4 pt-3 border-t border-gray-100">
+                        <span class="text-xs text-[#605e5c]">Was this helpful?</span>
+                        <button class="flex items-center gap-1 text-xs text-[#107c10] hover:bg-[#107c10]/5 px-2 py-1 rounded">
+                            <i class="fas fa-thumbs-up"></i> Yes <span class="text-[#a19f9d]">(45)</span>
+                        </button>
+                        <button class="flex items-center gap-1 text-xs text-[#605e5c] hover:bg-gray-50 px-2 py-1 rounded">
+                            <i class="fas fa-thumbs-down"></i> No <span class="text-[#a19f9d]">(5)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsed FAQ 3 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border border-transparent overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer hover:bg-[#faf9f8]">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#107c10]/10 text-[#107c10] text-xs font-semibold px-2 py-0.5 rounded">HR</span>
+                        <h3 class="font-medium text-[#323130] text-sm">How do I submit an expense report?</h3>
+                    </div>
+                    <i class="fas fa-chevron-down text-[#a19f9d] text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Collapsed FAQ 4 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border border-transparent overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer hover:bg-[#faf9f8]">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#107c10]/10 text-[#107c10] text-xs font-semibold px-2 py-0.5 rounded">HR</span>
+                        <h3 class="font-medium text-[#323130] text-sm">What are the company holidays for 2026?</h3>
+                    </div>
+                    <i class="fas fa-chevron-down text-[#a19f9d] text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Collapsed FAQ 5 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border border-transparent overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer hover:bg-[#faf9f8]">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#ca5010]/10 text-[#ca5010] text-xs font-semibold px-2 py-0.5 rounded">Finance</span>
+                        <h3 class="font-medium text-[#323130] text-sm">How do I request a purchase order?</h3>
+                    </div>
+                    <i class="fas fa-chevron-down text-[#a19f9d] text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Collapsed FAQ 6 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border border-transparent overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer hover:bg-[#faf9f8]">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#8764b8]/10 text-[#8764b8] text-xs font-semibold px-2 py-0.5 rounded">Operations</span>
+                        <h3 class="font-medium text-[#323130] text-sm">How do I book a conference room?</h3>
+                    </div>
+                    <i class="fas fa-chevron-down text-[#a19f9d] text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Collapsed FAQ 7 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border border-transparent overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer hover:bg-[#faf9f8]">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#0078d4]/10 text-[#0078d4] text-xs font-semibold px-2 py-0.5 rounded">IT</span>
+                        <h3 class="font-medium text-[#323130] text-sm">How do I request software installation?</h3>
+                    </div>
+                    <i class="fas fa-chevron-down text-[#a19f9d] text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Collapsed FAQ 8 -->
+            <div class="accordion-item bg-white rounded-lg fluent-shadow border border-transparent overflow-hidden">
+                <div class="flex items-center justify-between p-5 cursor-pointer hover:bg-[#faf9f8]">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[#008272]/10 text-[#008272] text-xs font-semibold px-2 py-0.5 rounded">Getting Started</span>
+                        <h3 class="font-medium text-[#323130] text-sm">Where can I find the employee handbook?</h3>
+                    </div>
+                    <i class="fas fa-chevron-down text-[#a19f9d] text-sm"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center mt-8 py-6 bg-white rounded-lg fluent-shadow">
+            <i class="fas fa-lightbulb text-[#ca5010] text-2xl mb-3"></i>
+            <p class="text-[#323130] font-medium text-sm mb-1">Didn't find what you need?</p>
+            <a href="#" class="text-[#0078d4] text-sm hover:underline font-medium">Suggest a question <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+        </div>
+    </div>
+</body>
+</html>

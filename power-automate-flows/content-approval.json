@@ -1,0 +1,165 @@
+{
+  "name": "KH - Content Approval Workflow",
+  "description": "Automates the knowledge article review and publishing approval process. When an article is submitted for review, it routes through manager approval and optional SME review before publishing.",
+  "trigger": {
+    "type": "SharePointForASelectedItem",
+    "inputs": {
+      "site": "{KnowledgeHubSiteUrl}",
+      "list": "Knowledge Articles",
+      "description": "Triggered manually or when KHStatus changes to 'In Review'"
+    }
+  },
+  "alternativeTrigger": {
+    "type": "SharePointWhenItemIsCreatedOrModified",
+    "inputs": {
+      "site": "{KnowledgeHubSiteUrl}",
+      "list": "Knowledge Articles",
+      "triggerCondition": "@equals(triggerOutputs()?['body/KHStatus/Value'], 'In Review')"
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "name": "Get_Article_Details",
+      "type": "SharePointGetItem",
+      "inputs": {
+        "site": "{KnowledgeHubSiteUrl}",
+        "list": "Knowledge Articles",
+        "id": "@{triggerOutputs()?['body/ID']}"
+      }
+    },
+    {
+      "step": 2,
+      "name": "Get_Author_Manager",
+      "type": "Office365GetManagerV2",
+      "inputs": {
+        "userId": "@{outputs('Get_Article_Details')?['body/Author/Email']}"
+      }
+    },
+    {
+      "step": 3,
+      "name": "Send_Manager_Approval",
+      "type": "ApprovalStartAndWaitForAnApproval",
+      "inputs": {
+        "approvalType": "Approve/Reject - First to respond",
+        "title": "Knowledge Article Review: @{outputs('Get_Article_Details')?['body/Title']}",
+        "assignedTo": "@{outputs('Get_Author_Manager')?['body/mail']}",
+        "details": "A new knowledge article has been submitted for review.\n\n**Title:** @{outputs('Get_Article_Details')?['body/Title']}\n**Author:** @{outputs('Get_Article_Details')?['body/Author/DisplayName']}\n**Category:** @{outputs('Get_Article_Details')?['body/KHCategory/Label']}\n**Department:** @{outputs('Get_Article_Details')?['body/KHDepartment/Label']}\n\nPlease review the article and approve or reject with comments.",
+        "itemLink": "@{outputs('Get_Article_Details')?['body/{Link}']}"
+      }
+    },
+    {
+      "step": 4,
+      "name": "Condition_Manager_Approved",
+      "type": "If",
+      "expression": "@equals(outputs('Send_Manager_Approval')?['body/outcome'], 'Approve')",
+      "ifTrue": [
+        {
+          "step": "4a",
+          "name": "Check_SME_Review_Needed",
+          "type": "If",
+          "expression": "@or(equals(outputs('Get_Article_Details')?['body/KHCategory/Label'], 'IT & Technology'), equals(outputs('Get_Article_Details')?['body/KHCategory/Label'], 'Engineering'))",
+          "description": "Technical categories require additional SME review",
+          "ifTrue": [
+            {
+              "step": "4a-i",
+              "name": "Send_SME_Approval",
+              "type": "ApprovalStartAndWaitForAnApproval",
+              "inputs": {
+                "approvalType": "Approve/Reject - First to respond",
+                "title": "SME Review: @{outputs('Get_Article_Details')?['body/Title']}",
+                "assignedTo": "{SMEReviewGroupEmail}",
+                "details": "This technical article requires subject matter expert review before publishing.\n\n**Title:** @{outputs('Get_Article_Details')?['body/Title']}\n**Category:** @{outputs('Get_Article_Details')?['body/KHCategory/Label']}\n\nManager approval: Approved by @{outputs('Get_Author_Manager')?['body/displayName']}"
+              }
+            },
+            {
+              "step": "4a-ii",
+              "name": "Condition_SME_Approved",
+              "type": "If",
+              "expression": "@equals(outputs('Send_SME_Approval')?['body/outcome'], 'Approve')",
+              "ifTrue": [
+                { "step": "4a-ii-1", "name": "Publish_Article_After_SME", "ref": "Publish_Article" }
+              ],
+              "ifFalse": [
+                { "step": "4a-ii-2", "name": "Return_For_Edits_SME", "ref": "Return_For_Edits", "comments": "SME review comments" }
+              ]
+            }
+          ],
+          "ifFalse": [
+            {
+              "step": "4a-iii",
+              "name": "Publish_Article_Direct",
+              "ref": "Publish_Article"
+            }
+          ]
+        }
+      ],
+      "ifFalse": [
+        {
+          "step": "4b",
+          "name": "Return_For_Edits_Manager",
+          "ref": "Return_For_Edits",
+          "comments": "Manager review comments"
+        }
+      ]
+    }
+  ],
+  "reusableActions": {
+    "Publish_Article": {
+      "steps": [
+        {
+          "name": "Update_Status_Published",
+          "type": "SharePointUpdateItem",
+          "inputs": {
+            "site": "{KnowledgeHubSiteUrl}",
+            "list": "Knowledge Articles",
+            "id": "@{triggerOutputs()?['body/ID']}",
+            "fields": {
+              "KHStatus": "Published"
+            }
+          }
+        },
+        {
+          "name": "Notify_Author_Published",
+          "type": "SendEmailV2",
+          "inputs": {
+            "to": "@{outputs('Get_Article_Details')?['body/Author/Email']}",
+            "subject": "Your article has been published: @{outputs('Get_Article_Details')?['body/Title']}",
+            "body": "<p>Your knowledge article <strong>@{outputs('Get_Article_Details')?['body/Title']}</strong> has been approved and published to the Knowledge Hub.</p><p><a href=\"@{outputs('Get_Article_Details')?['body/{Link}']}\">View Article</a></p>"
+          }
+        }
+      ]
+    },
+    "Return_For_Edits": {
+      "steps": [
+        {
+          "name": "Update_Status_Draft",
+          "type": "SharePointUpdateItem",
+          "inputs": {
+            "site": "{KnowledgeHubSiteUrl}",
+            "list": "Knowledge Articles",
+            "id": "@{triggerOutputs()?['body/ID']}",
+            "fields": {
+              "KHStatus": "Draft"
+            }
+          }
+        },
+        {
+          "name": "Notify_Author_Rejected",
+          "type": "SendEmailV2",
+          "inputs": {
+            "to": "@{outputs('Get_Article_Details')?['body/Author/Email']}",
+            "subject": "Article returned for edits: @{outputs('Get_Article_Details')?['body/Title']}",
+            "body": "<p>Your knowledge article <strong>@{outputs('Get_Article_Details')?['body/Title']}</strong> has been returned for edits.</p><p><strong>Reviewer comments:</strong></p><p>@{body('Send_Manager_Approval')?['comments']}</p><p>Please make the requested changes and resubmit for review.</p>"
+          }
+        }
+      ]
+    }
+  },
+  "connections": [
+    { "name": "SharePoint", "type": "shared_sharepointonline" },
+    { "name": "Office 365 Users", "type": "shared_office365users" },
+    { "name": "Approvals", "type": "shared_approvals" },
+    { "name": "Office 365 Outlook", "type": "shared_office365" }
+  ]
+}

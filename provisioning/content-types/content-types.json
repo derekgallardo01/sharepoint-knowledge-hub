@@ -1,0 +1,269 @@
+{
+  "siteColumns": [
+    {
+      "internalName": "KHBody",
+      "displayName": "Article Body",
+      "type": "Note",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "description": "Full HTML body content of the knowledge article."
+    },
+    {
+      "internalName": "KHDescription",
+      "displayName": "Description",
+      "type": "Note",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Short description or summary for search results and cards."
+    },
+    {
+      "internalName": "KHCategory",
+      "displayName": "Category",
+      "type": "TaxonomyFieldType",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "termSetName": "Categories",
+      "description": "Primary category from the Knowledge Hub taxonomy."
+    },
+    {
+      "internalName": "KHDepartment",
+      "displayName": "Department",
+      "type": "TaxonomyFieldType",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "termSetName": "Departments",
+      "description": "Owning department for this content."
+    },
+    {
+      "internalName": "KHTags",
+      "displayName": "Tags",
+      "type": "Text",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Semicolon-separated tags for search and related content matching."
+    },
+    {
+      "internalName": "KHReviewDate",
+      "displayName": "Review Date",
+      "type": "DateTime",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Date when this content should be reviewed for accuracy."
+    },
+    {
+      "internalName": "KHStatus",
+      "displayName": "Status",
+      "type": "Choice",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "choices": ["Draft", "In Review", "Published", "Archived"],
+      "description": "Content lifecycle status."
+    },
+    {
+      "internalName": "KHViewCount",
+      "displayName": "View Count",
+      "type": "Number",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Number of times this article has been viewed."
+    },
+    {
+      "internalName": "KHThumbnailUrl",
+      "displayName": "Thumbnail URL",
+      "type": "Text",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "URL to the article thumbnail image."
+    },
+    {
+      "internalName": "KHAnswer",
+      "displayName": "Answer",
+      "type": "Note",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "description": "HTML answer content for FAQ items."
+    },
+    {
+      "internalName": "KHSortOrder",
+      "displayName": "Sort Order",
+      "type": "Number",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Numeric sort order for FAQ display."
+    },
+    {
+      "internalName": "KHHelpfulCount",
+      "displayName": "Helpful Count",
+      "type": "Number",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Number of users who found this item helpful."
+    },
+    {
+      "internalName": "KHNotHelpfulCount",
+      "displayName": "Not Helpful Count",
+      "type": "Number",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Number of users who found this item not helpful."
+    },
+    {
+      "internalName": "KHEffectiveDate",
+      "displayName": "Effective Date",
+      "type": "DateTime",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Date when a policy becomes effective."
+    },
+    {
+      "internalName": "KHPolicyOwner",
+      "displayName": "Policy Owner",
+      "type": "User",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Person responsible for maintaining this policy."
+    },
+    {
+      "internalName": "KHAudience",
+      "displayName": "Audience",
+      "type": "TaxonomyFieldType",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "termSetName": "Audiences",
+      "description": "Target audience for this content."
+    },
+    {
+      "internalName": "KHDuration",
+      "displayName": "Duration",
+      "type": "Text",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Estimated time to complete (e.g., '30 minutes', '2 hours')."
+    },
+    {
+      "internalName": "KHDifficulty",
+      "displayName": "Difficulty Level",
+      "type": "Choice",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "choices": ["Beginner", "Intermediate", "Advanced"],
+      "description": "Difficulty level for training materials."
+    },
+    {
+      "internalName": "KHArticleId",
+      "displayName": "Article ID",
+      "type": "Number",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "description": "Reference to the parent article for feedback items."
+    },
+    {
+      "internalName": "KHRating",
+      "displayName": "Rating",
+      "type": "Choice",
+      "group": "Knowledge Hub Columns",
+      "required": true,
+      "choices": ["Helpful", "NotHelpful"],
+      "description": "User feedback rating."
+    },
+    {
+      "internalName": "KHComment",
+      "displayName": "Comment",
+      "type": "Note",
+      "group": "Knowledge Hub Columns",
+      "required": false,
+      "description": "Optional user feedback comment."
+    }
+  ],
+  "contentTypes": [
+    {
+      "name": "Knowledge Article",
+      "id": "0x010100A1B2C3D4E5F6789012345678",
+      "description": "A knowledge base article with rich content, metadata, and feedback tracking.",
+      "group": "Knowledge Hub Content Types",
+      "parentId": "0x01",
+      "fields": [
+        "KHBody",
+        "KHDescription",
+        "KHCategory",
+        "KHDepartment",
+        "KHTags",
+        "KHReviewDate",
+        "KHStatus",
+        "KHViewCount",
+        "KHThumbnailUrl"
+      ]
+    },
+    {
+      "name": "FAQ Item",
+      "id": "0x010100B2C3D4E5F67890123456789A",
+      "description": "A frequently asked question with answer and feedback tracking.",
+      "group": "Knowledge Hub Content Types",
+      "parentId": "0x01",
+      "fields": [
+        "KHAnswer",
+        "KHCategory",
+        "KHSortOrder",
+        "KHHelpfulCount",
+        "KHNotHelpfulCount"
+      ]
+    },
+    {
+      "name": "Policy Document",
+      "id": "0x010101C3D4E5F6789012345678ABCD",
+      "description": "An organizational policy document with versioning and review tracking.",
+      "group": "Knowledge Hub Content Types",
+      "parentId": "0x0101",
+      "fields": [
+        "KHCategory",
+        "KHDepartment",
+        "KHEffectiveDate",
+        "KHReviewDate",
+        "KHPolicyOwner",
+        "KHStatus"
+      ]
+    },
+    {
+      "name": "Training Material",
+      "id": "0x010101D4E5F6789012345678ABCDEF",
+      "description": "Training content with audience targeting, duration, and difficulty metadata.",
+      "group": "Knowledge Hub Content Types",
+      "parentId": "0x0101",
+      "fields": [
+        "KHCategory",
+        "KHDepartment",
+        "KHAudience",
+        "KHDuration",
+        "KHDifficulty",
+        "KHStatus"
+      ]
+    }
+  ],
+  "listMappings": [
+    {
+      "listName": "Knowledge Articles",
+      "template": "GenericList",
+      "contentTypes": ["Knowledge Article"]
+    },
+    {
+      "listName": "FAQs",
+      "template": "GenericList",
+      "contentTypes": ["FAQ Item"]
+    },
+    {
+      "listName": "Article Feedback",
+      "template": "GenericList",
+      "contentTypes": ["Item"]
+    },
+    {
+      "listName": "Policies",
+      "template": "DocumentLibrary",
+      "contentTypes": ["Policy Document"]
+    },
+    {
+      "listName": "Training Materials",
+      "template": "DocumentLibrary",
+      "contentTypes": ["Training Material"]
+    }
+  ]
+}

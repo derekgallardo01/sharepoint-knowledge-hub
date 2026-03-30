@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub - Search Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #faf9f8; }
+        .fluent-shadow { box-shadow: 0 1.6px 3.6px rgba(0,0,0,.132), 0 0.3px 0.9px rgba(0,0,0,.108); }
+        mark { background: #fff100; padding: 0 2px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <!-- Office 365 Top Bar -->
+    <div class="bg-[#0078d4] h-12 flex items-center px-4 text-white">
+        <div class="flex items-center gap-4">
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-th text-lg"></i></button>
+            <span class="font-semibold text-sm">SharePoint</span>
+        </div>
+        <div class="flex-1 flex justify-center">
+            <div class="bg-white/20 rounded-md flex items-center px-3 py-1.5 w-96">
+                <i class="fas fa-search text-white/70 text-sm mr-2"></i>
+                <span class="text-white/90 text-sm">cloud migration</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-bell text-sm"></i></button>
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-cog text-sm"></i></button>
+            <button class="hover:bg-white/20 p-2 rounded"><i class="fas fa-question-circle text-sm"></i></button>
+            <div class="w-8 h-8 bg-[#5c2d91] rounded-full flex items-center justify-center text-xs font-semibold ml-2">DG</div>
+        </div>
+    </div>
+
+    <!-- Hub Navigation -->
+    <div class="bg-white border-b border-gray-200 fluent-shadow">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex items-center h-12">
+                <div class="flex items-center mr-8">
+                    <div class="w-8 h-8 bg-[#0078d4] rounded flex items-center justify-center mr-3">
+                        <i class="fas fa-book-open text-white text-sm"></i>
+                    </div>
+                    <span class="font-semibold text-[#323130] text-sm">Knowledge Hub</span>
+                </div>
+                <nav class="flex items-center gap-1 text-sm">
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Home</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Knowledge Base</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Policies</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Tech Docs</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">Training</a>
+                    <a href="#" class="px-3 py-3 text-[#605e5c] hover:text-[#323130]">FAQs</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 py-6">
+        <h1 class="text-2xl font-semibold text-[#323130] mb-5">Search Knowledge Hub</h1>
+
+        <!-- Search Bar -->
+        <div class="bg-white rounded-lg fluent-shadow p-4 mb-6">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-search text-[#605e5c]"></i>
+                <input type="text" value="cloud migration" class="flex-1 text-[#323130] text-base outline-none font-medium" disabled>
+                <button class="bg-[#0078d4] text-white px-6 py-2 rounded-md text-sm font-semibold hover:bg-[#106ebe]">Search</button>
+            </div>
+            <!-- Search Verticals -->
+            <div class="flex gap-1 mt-3 border-t border-gray-100 pt-3">
+                <button class="px-3 py-1.5 rounded text-sm font-semibold bg-[#0078d4] text-white">All</button>
+                <button class="px-3 py-1.5 rounded text-sm text-[#605e5c] hover:bg-gray-100"><i class="fas fa-file-lines mr-1.5"></i>Articles</button>
+                <button class="px-3 py-1.5 rounded text-sm text-[#605e5c] hover:bg-gray-100"><i class="fas fa-circle-question mr-1.5"></i>FAQs</button>
+                <button class="px-3 py-1.5 rounded text-sm text-[#605e5c] hover:bg-gray-100"><i class="fas fa-shield mr-1.5"></i>Policies</button>
+                <button class="px-3 py-1.5 rounded text-sm text-[#605e5c] hover:bg-gray-100"><i class="fas fa-graduation-cap mr-1.5"></i>Training</button>
+            </div>
+        </div>
+
+        <div class="flex gap-6">
+            <!-- Left Panel: Refiners -->
+            <div class="w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg fluent-shadow p-5">
+                    <h3 class="font-semibold text-[#323130] text-sm mb-4">Refine Results</h3>
+
+                    <!-- Category Refiner -->
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-[#323130] text-xs uppercase tracking-wide mb-2">Category</h4>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 text-[#0078d4] rounded" checked>
+                            <span class="text-sm text-[#323130]">IT & Technology</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(23)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Operations</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(8)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Engineering</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(15)</span>
+                        </label>
+                    </div>
+
+                    <!-- Department Refiner -->
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-[#323130] text-xs uppercase tracking-wide mb-2">Department</h4>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Information Technology</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(18)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Engineering</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(12)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">DevOps</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(6)</span>
+                        </label>
+                    </div>
+
+                    <!-- Content Type Refiner -->
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-[#323130] text-xs uppercase tracking-wide mb-2">Content Type</h4>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Guide</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(10)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Policy</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(5)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">FAQ</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(8)</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <span class="text-sm text-[#605e5c]">Training</span>
+                            <span class="text-xs text-[#a19f9d] ml-auto">(4)</span>
+                        </label>
+                    </div>
+
+                    <!-- Date Range Refiner -->
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-[#323130] text-xs uppercase tracking-wide mb-2">Date Range</h4>
+                        <div class="space-y-1">
+                            <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                                <input type="radio" name="date" class="w-4 h-4">
+                                <span class="text-sm text-[#605e5c]">Past Week</span>
+                            </label>
+                            <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                                <input type="radio" name="date" class="w-4 h-4">
+                                <span class="text-sm text-[#605e5c]">Past Month</span>
+                            </label>
+                            <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                                <input type="radio" name="date" class="w-4 h-4">
+                                <span class="text-sm text-[#605e5c]">Past Year</span>
+                            </label>
+                            <label class="flex items-center gap-2 py-1 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                                <input type="radio" name="date" class="w-4 h-4">
+                                <span class="text-sm text-[#605e5c]">Custom...</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Author Refiner -->
+                    <div>
+                        <h4 class="font-semibold text-[#323130] text-xs uppercase tracking-wide mb-2">Author</h4>
+                        <label class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <div class="w-6 h-6 bg-[#5c2d91] rounded-full flex items-center justify-center text-white text-xs flex-shrink-0">DG</div>
+                            <span class="text-sm text-[#605e5c]">Derek G.</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <div class="w-6 h-6 bg-[#d13438] rounded-full flex items-center justify-center text-white text-xs flex-shrink-0">MJ</div>
+                            <span class="text-sm text-[#605e5c]">Mike Johnson</span>
+                        </label>
+                        <label class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 px-1 rounded">
+                            <input type="checkbox" class="w-4 h-4 rounded">
+                            <div class="w-6 h-6 bg-[#0078d4] rounded-full flex items-center justify-center text-white text-xs flex-shrink-0">SJ</div>
+                            <span class="text-sm text-[#605e5c]">Sarah Johnson</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Results Area -->
+            <div class="flex-1">
+                <!-- Results Header -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm text-[#605e5c]"><strong class="text-[#323130]">46 results</strong> for '<strong>cloud migration</strong>'</span>
+                    <div class="flex items-center gap-1 text-sm">
+                        <span class="text-[#605e5c]">Sort:</span>
+                        <button class="px-2 py-1 rounded text-[#0078d4] font-semibold bg-[#0078d4]/5">Relevance</button>
+                        <button class="px-2 py-1 rounded text-[#605e5c] hover:bg-gray-100">Date</button>
+                        <button class="px-2 py-1 rounded text-[#605e5c] hover:bg-gray-100">Popularity</button>
+                    </div>
+                </div>
+
+                <!-- Result 1 -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-3 hover:border-l-4 hover:border-l-[#0078d4] transition-all">
+                    <a href="#" class="text-[#0078d4] font-semibold text-base hover:underline"><mark>Cloud</mark> <mark>Migration</mark> Strategy Guide</a>
+                    <div class="text-xs text-[#107c10] mt-1 mb-2">Knowledge Hub &gt; Tech Docs &gt; Cloud Migration</div>
+                    <p class="text-sm text-[#605e5c] mb-3">Comprehensive guide for planning and executing <mark>cloud</mark> <mark>migration</mark> projects. Covers assessment, strategy selection, Azure landing zones, and post-<mark>migration</mark> optimization best practices...</p>
+                    <div class="flex items-center gap-3 text-xs text-[#a19f9d]">
+                        <span class="bg-[#0078d4]/10 text-[#0078d4] px-2 py-0.5 rounded font-medium">IT &gt; Cloud</span>
+                        <span class="flex items-center gap-1"><div class="w-4 h-4 bg-[#5c2d91] rounded-full flex items-center justify-center text-white" style="font-size:8px">DG</div> Derek G.</span>
+                        <span><i class="fas fa-calendar mr-1"></i>Mar 28, 2026</span>
+                        <span><i class="fas fa-eye mr-1"></i>1,247 views</span>
+                    </div>
+                </div>
+
+                <!-- Result 2 -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-3 hover:border-l-4 hover:border-l-[#0078d4] transition-all">
+                    <a href="#" class="text-[#0078d4] font-semibold text-base hover:underline">Azure <mark>Cloud</mark> <mark>Migration</mark> Checklist</a>
+                    <div class="text-xs text-[#107c10] mt-1 mb-2">Knowledge Hub &gt; Tech Docs &gt; Cloud Migration</div>
+                    <p class="text-sm text-[#605e5c] mb-3">Pre-<mark>migration</mark> assessment checklist for Azure workloads. Includes network readiness, application dependency mapping, cost estimation, and compliance validation steps...</p>
+                    <div class="flex items-center gap-3 text-xs text-[#a19f9d]">
+                        <span class="bg-[#0078d4]/10 text-[#0078d4] px-2 py-0.5 rounded font-medium">IT &gt; Cloud</span>
+                        <span class="flex items-center gap-1"><div class="w-4 h-4 bg-[#d13438] rounded-full flex items-center justify-center text-white" style="font-size:8px">MJ</div> Mike Johnson</span>
+                        <span><i class="fas fa-calendar mr-1"></i>Mar 20, 2026</span>
+                        <span><i class="fas fa-eye mr-1"></i>982 views</span>
+                    </div>
+                </div>
+
+                <!-- Result 3 -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-3 hover:border-l-4 hover:border-l-[#0078d4] transition-all">
+                    <a href="#" class="text-[#0078d4] font-semibold text-base hover:underline"><mark>Cloud</mark> Security Best Practices During <mark>Migration</mark></a>
+                    <div class="text-xs text-[#107c10] mt-1 mb-2">Knowledge Hub &gt; Policies &gt; IT Security</div>
+                    <p class="text-sm text-[#605e5c] mb-3">Security requirements and best practices to follow during <mark>cloud</mark> <mark>migration</mark> projects. Covers data encryption in transit, identity management, network security groups, and compliance requirements...</p>
+                    <div class="flex items-center gap-3 text-xs text-[#a19f9d]">
+                        <span class="bg-[#d13438]/10 text-[#d13438] px-2 py-0.5 rounded font-medium">IT &gt; Security</span>
+                        <span class="flex items-center gap-1"><div class="w-4 h-4 bg-[#0078d4] rounded-full flex items-center justify-center text-white" style="font-size:8px">SJ</div> Sarah Johnson</span>
+                        <span><i class="fas fa-calendar mr-1"></i>Mar 15, 2026</span>
+                        <span><i class="fas fa-eye mr-1"></i>756 views</span>
+                    </div>
+                </div>
+
+                <!-- Result 4 -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-3 hover:border-l-4 hover:border-l-[#0078d4] transition-all">
+                    <a href="#" class="text-[#0078d4] font-semibold text-base hover:underline">FAQ: What is the <mark>cloud</mark> <mark>migration</mark> timeline?</a>
+                    <div class="text-xs text-[#107c10] mt-1 mb-2">Knowledge Hub &gt; FAQs &gt; IT</div>
+                    <p class="text-sm text-[#605e5c] mb-3">Common questions about the organization's <mark>cloud</mark> <mark>migration</mark> timeline, phases, and expected completion dates. Includes department-specific schedules and key milestones for FY2026...</p>
+                    <div class="flex items-center gap-3 text-xs text-[#a19f9d]">
+                        <span class="bg-[#ca5010]/10 text-[#ca5010] px-2 py-0.5 rounded font-medium">FAQ</span>
+                        <span class="flex items-center gap-1"><div class="w-4 h-4 bg-[#5c2d91] rounded-full flex items-center justify-center text-white" style="font-size:8px">DG</div> Derek G.</span>
+                        <span><i class="fas fa-calendar mr-1"></i>Mar 10, 2026</span>
+                        <span><i class="fas fa-eye mr-1"></i>634 views</span>
+                    </div>
+                </div>
+
+                <!-- Result 5 -->
+                <div class="bg-white rounded-lg fluent-shadow p-5 mb-3 hover:border-l-4 hover:border-l-[#0078d4] transition-all">
+                    <a href="#" class="text-[#0078d4] font-semibold text-base hover:underline"><mark>Cloud</mark> <mark>Migration</mark> Training: Azure Fundamentals</a>
+                    <div class="text-xs text-[#107c10] mt-1 mb-2">Knowledge Hub &gt; Training &gt; IT Skills</div>
+                    <p class="text-sm text-[#605e5c] mb-3">Self-paced training module covering Azure fundamentals for teams involved in the <mark>cloud</mark> <mark>migration</mark>. Includes hands-on labs, assessment quizzes, and certification preparation resources...</p>
+                    <div class="flex items-center gap-3 text-xs text-[#a19f9d]">
+                        <span class="bg-[#107c10]/10 text-[#107c10] px-2 py-0.5 rounded font-medium">Training</span>
+                        <span class="flex items-center gap-1"><div class="w-4 h-4 bg-[#ca5010] rounded-full flex items-center justify-center text-white" style="font-size:8px">JD</div> Jane Davis</span>
+                        <span><i class="fas fa-calendar mr-1"></i>Feb 28, 2026</span>
+                        <span><i class="fas fa-eye mr-1"></i>521 views</span>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex items-center justify-center gap-1 mt-6">
+                    <button class="w-9 h-9 rounded text-sm font-semibold bg-[#0078d4] text-white">1</button>
+                    <button class="w-9 h-9 rounded text-sm text-[#605e5c] hover:bg-gray-200">2</button>
+                    <button class="w-9 h-9 rounded text-sm text-[#605e5c] hover:bg-gray-200">3</button>
+                    <button class="w-9 h-9 rounded text-sm text-[#605e5c] hover:bg-gray-200">4</button>
+                    <button class="w-9 h-9 rounded text-sm text-[#605e5c] hover:bg-gray-200">5</button>
+                    <span class="text-[#a19f9d] text-sm px-1">...</span>
+                    <button class="w-9 h-9 rounded text-sm text-[#605e5c] hover:bg-gray-200">10</button>
+                    <button class="w-9 h-9 rounded text-sm text-[#605e5c] hover:bg-gray-200"><i class="fas fa-chevron-right text-xs"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

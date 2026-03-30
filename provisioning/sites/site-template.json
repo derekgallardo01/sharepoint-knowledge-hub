@@ -1,0 +1,217 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pnp/pnp-provisioning-schema/master/ProvisioningSchema-2021-03.json",
+  "version": "1.0",
+  "metadata": {
+    "name": "Knowledge Hub Site Template",
+    "description": "PnP provisioning template for the Knowledge Hub communication site.",
+    "author": "Knowledge Hub Team"
+  },
+  "regionalSettings": {
+    "adjustHijriDays": 0,
+    "alternateCalendarType": 0,
+    "calendarType": 1,
+    "collation": 25,
+    "firstDayOfWeek": 0,
+    "firstWeekOfYear": 0,
+    "localeId": 1033,
+    "showWeeks": false,
+    "time24": false,
+    "timeZone": 10,
+    "workDayEndHour": 1020,
+    "workDays": 62,
+    "workDayStartHour": 480
+  },
+  "supportedUILanguages": [
+    { "LCID": 1033 }
+  ],
+  "features": {
+    "siteFeatures": [],
+    "webFeatures": []
+  },
+  "navigation": {
+    "globalNavigation": {
+      "navigationType": "Structural",
+      "structuralNavigation": {
+        "removeExistingNodes": true,
+        "nodes": [
+          {
+            "title": "Home",
+            "url": "{site}",
+            "isExternal": false
+          },
+          {
+            "title": "Knowledge Base",
+            "url": "{site}/SitePages/Articles.aspx",
+            "isExternal": false,
+            "children": [
+              { "title": "All Articles", "url": "{site}/SitePages/Articles.aspx", "isExternal": false },
+              { "title": "Search", "url": "{site}/SitePages/Search.aspx", "isExternal": false },
+              { "title": "Recently Updated", "url": "{site}/SitePages/Recent.aspx", "isExternal": false },
+              { "title": "Featured", "url": "{site}/SitePages/Featured.aspx", "isExternal": false }
+            ]
+          },
+          {
+            "title": "Categories",
+            "url": "{site}/SitePages/Categories.aspx",
+            "isExternal": false,
+            "children": [
+              { "title": "IT & Technology", "url": "{site}/SitePages/Categories.aspx?cat=IT", "isExternal": false },
+              { "title": "Human Resources", "url": "{site}/SitePages/Categories.aspx?cat=HR", "isExternal": false },
+              { "title": "Finance", "url": "{site}/SitePages/Categories.aspx?cat=Finance", "isExternal": false },
+              { "title": "Operations", "url": "{site}/SitePages/Categories.aspx?cat=Operations", "isExternal": false },
+              { "title": "Engineering", "url": "{site}/SitePages/Categories.aspx?cat=Engineering", "isExternal": false }
+            ]
+          },
+          {
+            "title": "FAQs",
+            "url": "{site}/SitePages/FAQs.aspx",
+            "isExternal": false
+          },
+          {
+            "title": "Submit Content",
+            "url": "{site}/SitePages/Submit.aspx",
+            "isExternal": false
+          }
+        ]
+      }
+    },
+    "currentNavigation": {
+      "navigationType": "Structural",
+      "structuralNavigation": {
+        "removeExistingNodes": true,
+        "nodes": [
+          { "title": "Home", "url": "{site}", "isExternal": false },
+          { "title": "Articles", "url": "{site}/SitePages/Articles.aspx", "isExternal": false },
+          { "title": "FAQs", "url": "{site}/SitePages/FAQs.aspx", "isExternal": false },
+          { "title": "Search", "url": "{site}/SitePages/Search.aspx", "isExternal": false }
+        ]
+      }
+    }
+  },
+  "pages": [
+    {
+      "name": "Home.aspx",
+      "layout": "Home",
+      "promoteAsNewsArticle": false,
+      "overwrite": true,
+      "title": "Knowledge Hub",
+      "header": {
+        "type": "Custom",
+        "translateX": 0,
+        "translateY": 0,
+        "layoutType": "FullWidthImage",
+        "showTopicHeader": false,
+        "showPublishDate": false,
+        "topicHeader": "",
+        "alternativeText": "Knowledge Hub"
+      },
+      "sections": [
+        {
+          "order": 1,
+          "type": "OneColumn",
+          "controls": [
+            {
+              "order": 1,
+              "type": "ClientSideWebPart",
+              "webPartId": "d2b3c4d5-e6f7-a8b9-c0d1-e2f3a4b5c6d7",
+              "title": "Quick Search",
+              "properties": {
+                "resultsPerPage": 10,
+                "showRefiners": false,
+                "showSuggestions": true,
+                "showSearchHistory": true
+              }
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "type": "OneColumn",
+          "controls": [
+            {
+              "order": 1,
+              "type": "ClientSideWebPart",
+              "webPartId": "e3c4d5e6-f7a8-b9c0-d1e2-f3a4b5c6d7e8",
+              "title": "Featured Content",
+              "properties": {
+                "contentSource": "Knowledge Articles",
+                "itemCount": 6,
+                "layoutMode": "carousel",
+                "showTrending": true,
+                "autoRotate": true,
+                "rotateInterval": 5
+              }
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "type": "TwoColumn",
+          "controls": [
+            {
+              "order": 1,
+              "column": 1,
+              "type": "ClientSideWebPart",
+              "webPartId": "a5e6f7a8-b9c0-d1e2-f3a4-b5c6d7e8f9a0",
+              "title": "Recently Updated",
+              "properties": {
+                "itemCount": 10,
+                "sourceLists": "Knowledge Articles,FAQs",
+                "defaultTimeRange": "week",
+                "defaultViewMode": "compact"
+              }
+            },
+            {
+              "order": 1,
+              "column": 2,
+              "type": "ClientSideWebPart",
+              "webPartId": "f4d5e6f7-a8b9-c0d1-e2f3-a4b5c6d7e8f9",
+              "title": "Quick FAQs",
+              "properties": {
+                "faqListName": "FAQs",
+                "showSearch": true,
+                "showFeedback": true,
+                "expandFirst": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Articles.aspx",
+      "layout": "Article",
+      "title": "All Articles"
+    },
+    {
+      "name": "Search.aspx",
+      "layout": "Article",
+      "title": "Search Knowledge Hub"
+    },
+    {
+      "name": "FAQs.aspx",
+      "layout": "Article",
+      "title": "Frequently Asked Questions"
+    },
+    {
+      "name": "Recent.aspx",
+      "layout": "Article",
+      "title": "Recently Updated"
+    },
+    {
+      "name": "Featured.aspx",
+      "layout": "Article",
+      "title": "Featured Content"
+    },
+    {
+      "name": "Categories.aspx",
+      "layout": "Article",
+      "title": "Browse by Category"
+    },
+    {
+      "name": "Submit.aspx",
+      "layout": "Article",
+      "title": "Submit New Content"
+    }
+  ]
+}

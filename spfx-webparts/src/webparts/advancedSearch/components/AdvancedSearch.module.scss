@@ -1,0 +1,61 @@
+@import '~@fluentui/react/dist/sass/References';
+
+.historySection {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: var(--colorNeutralBackground2);
+  border-radius: 8px;
+}
+
+.historyList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.resultLink {
+  color: var(--colorBrandForeground1);
+  text-decoration: none;
+  font-size: 16px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: var(--colorBrandForeground2);
+  }
+}
+
+.activeFilterBadge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.refinerCheckbox {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.searchResultHighlight {
+  :global {
+    c0 {
+      font-weight: 700;
+      background-color: rgba(255, 255, 0, 0.2);
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    ddd {
+      &::before {
+        content: '...';
+      }
+    }
+  }
+}

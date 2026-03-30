@@ -1,0 +1,43 @@
+# SPFx
+node_modules/
+lib/
+dist/
+temp/
+sharepoint/
+release/
+*.sppkg
+*.log
+.yo-rc.json
+
+# Build
+*.js.map
+*.css.map
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# PowerShell
+*.ps1xml
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Coverage
+coverage/
+*.lcov
+
+# Temp
+*.tmp
+*.bak
+*.orig
