@@ -8,6 +8,8 @@
 
 A comprehensive enterprise Knowledge Hub solution for SharePoint Online featuring SPFx web parts, automated provisioning, content migration tools, Power Automate workflows, and a complete governance framework.
 
+![SharePoint Knowledge Hub Hero](docs/screenshots/hero-knowledge-hub.png)
+
 ## Overview
 
 Organizations struggle with scattered knowledge across file shares, wikis, email threads, and individual team sites. The Knowledge Hub centralizes organizational knowledge into a structured, searchable, and governed platform built entirely on SharePoint Online and the Microsoft 365 ecosystem.
@@ -302,7 +304,17 @@ Detailed architecture diagrams are available in the `docs/diagrams/` directory:
 
 ## Screenshots
 
-Interactive HTML mockups of the Knowledge Hub UI are available in the `docs/screenshots/` directory. Open any file in a browser to see the full mockup.
+| | |
+|---|---|
+| ![Hub Home Page](docs/screenshots/hub-home.png) | ![Advanced Search](docs/screenshots/advanced-search.png) |
+| *Hub Home Page* | *Advanced Search* |
+| ![Article Viewer](docs/screenshots/article-viewer.png) | ![FAQ Accordion](docs/screenshots/faq-accordion.png) |
+| *Article Viewer* | *FAQ Accordion* |
+| ![Recently Updated](docs/screenshots/recently-updated.png) | ![Migration Report](docs/screenshots/migration-report.png) |
+| *Recently Updated* | *Migration Report* |
+
+<details>
+<summary>Interactive HTML mockups (open in browser)</summary>
 
 | View | Description | Path |
 |---|---|---|
@@ -313,6 +325,7 @@ Interactive HTML mockups of the Knowledge Hub UI are available in the `docs/scre
 | **FAQ Accordion** | FAQ page with category pills, search filter, expandable answers, and helpfulness voting | [`docs/screenshots/faq-accordion.html`](docs/screenshots/faq-accordion.html) |
 | **Recently Updated** | Timeline feed with date grouping, change type badges, and time range filters | [`docs/screenshots/recently-updated.html`](docs/screenshots/recently-updated.html) |
 | **Migration Report** | Validation report dashboard with pass rate, detailed results table, and error summary | [`docs/screenshots/migration-report.html`](docs/screenshots/migration-report.html) |
+</details>
 
 ## Prerequisites
 
