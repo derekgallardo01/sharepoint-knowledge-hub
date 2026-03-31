@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "e4a7b2c1-3d5f-4e8a-9b6c-0d1e2f3a4b5c",
+  "alias": "AnalyticsDashboardWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": [
+    "SharePointWebPart",
+    "TeamsPersonalApp",
+    "TeamsTab"
+  ],
+  "supportsThemeVariants": true,
+  "preconfiguredEntries": [
+    {
+      "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+      "group": {
+        "default": "Knowledge Hub"
+      },
+      "title": {
+        "default": "Analytics Dashboard"
+      },
+      "description": {
+        "default": "Displays knowledge hub analytics including top articles, search trends, content freshness, author contributions, and category distribution."
+      },
+      "officeFabricIconFontName": "BarChartVertical",
+      "properties": {
+        "dateRange": 30,
+        "articleCount": 10,
+        "chartType": "bar",
+        "articleListName": "Knowledge Articles",
+        "faqListName": "FAQs",
+        "showTopArticles": true,
+        "showSearchTerms": true,
+        "showContentFreshness": true,
+        "showAuthorContributions": true,
+        "showCategoryDistribution": true
+      }
+    }
+  ]
+}

@@ -110,7 +110,7 @@ graph TD
 
 ## Features
 
-### SPFx Web Parts (5)
+### SPFx Web Parts (6)
 
 | Web Part | Description | Icon |
 |---|---|---|
@@ -119,6 +119,7 @@ graph TD
 | **Featured Content** | Featured/trending content in grid or carousel layout with animated transitions | FavoriteStar |
 | **FAQ Accordion** | Interactive FAQ with category filters, search, and per-item helpfulness feedback | QandA |
 | **Recently Updated** | Timeline-style feed with date grouping, change type indicators, and time range filters | Clock |
+| **Analytics Dashboard** | Content analytics with top articles, search terms, freshness tracking, author contributions, and category distribution charts | BarChartVertical |
 
 ### Provisioning Scripts (PowerShell)
 
@@ -136,6 +137,13 @@ graph TD
 | `Import-ContentFromCsv.ps1` | Bulk import from CSV with column mapping, taxonomy lookup, retry logic |
 | `Export-SharePointContent.ps1` | Export list items to CSV with metadata and version history |
 | `Validate-Migration.ps1` | Compare source CSV with SharePoint list and generate HTML validation report |
+| `Transform-ContentMetadata.ps1` | Clean and normalize CSV data: title case, dates, URLs, taxonomy mapping |
+
+### Content Health Monitoring
+
+| Tool | Purpose |
+|---|---|
+| `Monitor-ContentHealth.ps1` | Detect stale content, orphaned pages, and broken links; generate HTML dashboard report |
 
 ### Power Automate Flows
 
@@ -332,6 +340,23 @@ Follow the instructions in `power-automate-flows/README.md` to create the approv
 | `defaultTimeRange` | choice | "week" | today, week, or month |
 | `defaultViewMode` | choice | "compact" | compact or detailed |
 
+### Analytics Dashboard
+
+**Properties:**
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `articleListName` | string | "Knowledge Articles" | Source list for article data |
+| `faqListName` | string | "FAQs" | Source list for FAQ data |
+| `dateRange` | number | 30 | Date range in days (7-365) |
+| `articleCount` | number | 10 | Number of top articles to display (5-25) |
+| `chartType` | choice | "bar" | bar, horizontal, or donut |
+| `showTopArticles` | boolean | true | Show top articles by views |
+| `showSearchTerms` | boolean | true | Show popular search terms |
+| `showContentFreshness` | boolean | true | Show content freshness indicators |
+| `showAuthorContributions` | boolean | true | Show author contribution chart |
+| `showCategoryDistribution` | boolean | true | Show category distribution chart |
+
 ## Provisioning Reference
 
 All provisioning scripts support the `-WhatIf` flag for preview mode and accept an optional `-Credential` parameter for non-interactive authentication.
@@ -384,16 +409,18 @@ sharepoint-knowledge-hub/
 |   |       |-- advancedSearch/       # Search web part
 |   |       |-- featuredContent/      # Featured/trending web part
 |   |       |-- faqAccordion/         # FAQ web part
-|   |       +-- recentlyUpdated/      # Recent updates web part
+|   |       |-- recentlyUpdated/      # Recent updates web part
+|   |       +-- analyticsDashboard/   # Analytics dashboard web part
 |   |-- config/                       # SPFx build configuration
 |   +-- package.json
 |-- provisioning/                     # Infrastructure as code
 |   |-- sites/                        # Hub site + associated sites
 |   |-- taxonomy/                     # Managed metadata term sets
 |   |-- content-types/                # Content types + site columns
-|   +-- search/                       # Search schema + verticals
+|   |-- search/                       # Search schema + verticals
+|   +-- monitoring/                   # Content health monitoring scripts
 |-- migration/                        # Content migration toolkit
-|   |-- scripts/                      # Import, export, validate
+|   |-- scripts/                      # Import, export, validate, transform
 |   +-- templates/                    # CSV templates + mapping files
 |-- power-automate-flows/             # Workflow definitions
 |-- docs/                             # Governance documentation
@@ -402,13 +429,41 @@ sharepoint-knowledge-hub/
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/my-feature`)
-3. Commit your changes
-4. Push to the branch (`git push origin feature/my-feature`)
-5. Open a Pull Request
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for prerequisites, setup instructions, development workflow, and code style guidelines.
 
-Please ensure all PowerShell scripts support `-WhatIf` and all TypeScript code passes linting before submitting.
+---
+
+## Changelog
+
+### v1.1.0
+
+- Added Analytics Dashboard web part with top articles, search terms, content freshness, author contributions, and category distribution (pure CSS charts)
+- Added `Monitor-ContentHealth.ps1` for detecting stale content, orphaned pages, and broken links with HTML dashboard report generation
+- Added `Transform-ContentMetadata.ps1` for CSV data cleaning: title case, date normalization, URL validation, and taxonomy value mapping
+- Updated web part count from 5 to 6
+
+### v1.0.0
+
+- Five SPFx web parts: Knowledge Article, Advanced Search, Featured Content, FAQ Accordion, Recently Updated
+- Hub site provisioning with 4 associated sites, managed metadata taxonomy, content types, and search configuration
+- Migration toolkit: CSV import, SharePoint export, and validation reporting
+- Power Automate flows: Content Approval and Content Review Reminder
+- Governance documentation: information architecture, governance framework, migration guide, search configuration
+- Architecture diagrams and HTML screenshot mockups
+
+---
+
+## Roadmap
+
+Planned features for future releases:
+
+- **AI-powered search suggestions** -- Microsoft Copilot / Azure OpenAI integration for intelligent search auto-complete and answer extraction
+- **Content translation** -- automatic article translation using Azure Cognitive Services with side-by-side bilingual views
+- **Microsoft Teams tab integration** -- Teams tab app for browsing knowledge articles and FAQs without leaving Teams
+- **Mobile app** -- Power Apps mobile companion for offline article reading and quick feedback submission
+- **Content analytics API** -- REST API endpoint (Azure Function) exposing analytics data for external reporting and dashboard integration
+
+---
 
 ## License
 
