@@ -110,7 +110,7 @@ graph TD
 
 ## Features
 
-### SPFx Web Parts (6)
+### SPFx Web Parts (7)
 
 | Web Part | Description | Icon |
 |---|---|---|
@@ -120,6 +120,7 @@ graph TD
 | **FAQ Accordion** | Interactive FAQ with category filters, search, and per-item helpfulness feedback | QandA |
 | **Recently Updated** | Timeline-style feed with date grouping, change type indicators, and time range filters | Clock |
 | **Analytics Dashboard** | Content analytics with top articles, search terms, freshness tracking, author contributions, and category distribution charts | BarChartVertical |
+| **Content Submission** | Article submission form with Markdown editor, taxonomy picker, tags, file attachments, auto-save drafts, validation, and review workflow | EditCreate |
 
 ### Provisioning Scripts (PowerShell)
 
@@ -129,6 +130,8 @@ graph TD
 | `Deploy-Taxonomy.ps1` | Deploys managed metadata (Categories, Departments, Doc Types, Audiences) |
 | `Deploy-ContentTypes.ps1` | Creates content types (Knowledge Article, FAQ Item, Policy Document, Training Material) |
 | `Configure-Search.ps1` | Configures result source, managed properties, refiners, and search verticals |
+| `Backup-KnowledgeHub.ps1` | Exports all list items, document library files, and taxonomy terms to a timestamped backup folder with manifest |
+| `Restore-KnowledgeHub.ps1` | Restores list items, documents, and taxonomy from a backup with -WhatIf support |
 
 ### Migration Toolkit
 
@@ -144,6 +147,12 @@ graph TD
 | Tool | Purpose |
 |---|---|
 | `Monitor-ContentHealth.ps1` | Detect stale content, orphaned pages, and broken links; generate HTML dashboard report |
+
+### Notification Service
+
+| Service | Purpose |
+|---|---|
+| `NotificationService.ts` | In-app notification bell with read/unread tracking, notification preferences (subscribed categories), and SharePoint list backend |
 
 ### Power Automate Flows
 
@@ -357,6 +366,19 @@ Follow the instructions in `power-automate-flows/README.md` to create the approv
 | `showAuthorContributions` | boolean | true | Show author contribution chart |
 | `showCategoryDistribution` | boolean | true | Show category distribution chart |
 
+### Content Submission
+
+**Properties:**
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `draftListName` | string | "Knowledge Drafts" | SharePoint list for auto-saved drafts |
+| `publishedListName` | string | "Knowledge Articles" | SharePoint list for submitted articles |
+| `autoSaveIntervalSeconds` | number | 30 | Auto-save interval in seconds (10-120) |
+| `maxTitleLength` | number | 200 | Maximum title character length (50-500) |
+| `maxBodyLength` | number | 50000 | Maximum body character length (5000-100000) |
+| `enableAttachments` | boolean | true | Enable file attachments |
+
 ## Provisioning Reference
 
 All provisioning scripts support the `-WhatIf` flag for preview mode and accept an optional `-Credential` parameter for non-interactive authentication.
@@ -403,14 +425,22 @@ sharepoint-knowledge-hub/
 |   |   |-- services/                 # Shared service layer
 |   |   |   |-- SearchService.ts      # Search + Graph API
 |   |   |   |-- TaxonomyService.ts    # Managed metadata
-|   |   |   +-- KnowledgeService.ts   # CRUD + feedback
+|   |   |   |-- KnowledgeService.ts   # CRUD + feedback
+|   |   |   +-- NotificationService.ts # In-app notification bell + preferences
 |   |   +-- webparts/
 |   |       |-- knowledgeArticle/     # Article viewer web part
 |   |       |-- advancedSearch/       # Search web part
 |   |       |-- featuredContent/      # Featured/trending web part
 |   |       |-- faqAccordion/         # FAQ web part
 |   |       |-- recentlyUpdated/      # Recent updates web part
-|   |       +-- analyticsDashboard/   # Analytics dashboard web part
+|   |       |-- analyticsDashboard/   # Analytics dashboard web part
+|   |       +-- contentSubmission/    # Article submission form web part
+|   |           |-- ContentSubmissionWebPart.ts
+|   |           |-- ContentSubmissionWebPart.manifest.json
+|   |           +-- components/
+|   |               |-- ContentSubmission.tsx
+|   |               |-- ContentSubmission.module.scss
+|   |               +-- IContentSubmissionProps.ts
 |   |-- config/                       # SPFx build configuration
 |   +-- package.json
 |-- provisioning/                     # Infrastructure as code
@@ -418,7 +448,10 @@ sharepoint-knowledge-hub/
 |   |-- taxonomy/                     # Managed metadata term sets
 |   |-- content-types/                # Content types + site columns
 |   |-- search/                       # Search schema + verticals
-|   +-- monitoring/                   # Content health monitoring scripts
+|   |-- monitoring/                   # Content health monitoring scripts
+|   +-- backup/                       # Backup and restore scripts
+|       |-- Backup-KnowledgeHub.ps1   # Full site backup with manifest
+|       +-- Restore-KnowledgeHub.ps1  # Restore from backup
 |-- migration/                        # Content migration toolkit
 |   |-- scripts/                      # Import, export, validate, transform
 |   +-- templates/                    # CSV templates + mapping files
@@ -434,6 +467,14 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for prerequisites, setup instructions
 ---
 
 ## Changelog
+
+### v1.2.0
+
+- Added Content Submission web part with Markdown editor and live preview, taxonomy category picker, department selector, multi-value tags, audience targeting, file attachments, auto-save drafts to SharePoint every 30 seconds, form validation, and submit for review workflow
+- Added `NotificationService.ts` for in-app notifications: fetch/create notifications, mark read/unread, notification preferences with category subscriptions, unread count caching, and Fluent UI icon mapping
+- Added `Backup-KnowledgeHub.ps1` for comprehensive site backup: exports list items (with optional version history), document library files, taxonomy term sets, and generates a manifest.json with backup metadata
+- Added `Restore-KnowledgeHub.ps1` for restoring from backup: reads manifest, restores taxonomy terms, list items, and documents with -WhatIf support
+- Updated web part count from 6 to 7
 
 ### v1.1.0
 
