@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "f5b8c3d1-2e6a-4f9b-a7d0-1c3e5f2a8b4d",
+  "alias": "ContentSubmissionWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": [
+    "SharePointWebPart",
+    "SharePointFullPage"
+  ],
+  "supportsThemeVariants": true,
+  "preconfiguredEntries": [
+    {
+      "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+      "group": {
+        "default": "Knowledge Hub"
+      },
+      "title": {
+        "default": "Content Submission"
+      },
+      "description": {
+        "default": "Submit new knowledge articles with rich text editing, metadata tagging, file attachments, auto-save drafts, and review workflow."
+      },
+      "officeFabricIconFontName": "EditCreate",
+      "properties": {
+        "draftListName": "Knowledge Drafts",
+        "publishedListName": "Knowledge Articles",
+        "autoSaveIntervalSeconds": 30,
+        "maxTitleLength": 200,
+        "maxBodyLength": 50000,
+        "enableAttachments": true
+      }
+    }
+  ]
+}

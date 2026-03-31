@@ -1,0 +1,459 @@
+@import '~office-ui-fabric-react/dist/sass/References.scss';
+
+$color-primary: $ms-color-themePrimary;
+$color-success: #107c10;
+$color-warning: #ffb900;
+$color-error: #d13438;
+$color-neutral: #605e5c;
+$radius: 4px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+// ---------------------------------------------------------------------------
+// Container
+// ---------------------------------------------------------------------------
+.contentSubmission {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  background: $ms-color-white;
+  border: 1px solid $ms-color-neutralLight;
+  border-radius: $radius;
+  font-family: $ms-font-family-fallbacks;
+}
+
+// ---------------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------------
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $ms-color-neutralLight;
+}
+
+.title {
+  margin: 0;
+  font-size: $ms-font-size-xxl;
+  font-weight: 600;
+  color: $ms-color-neutralPrimary;
+}
+
+// ---------------------------------------------------------------------------
+// Draft indicator
+// ---------------------------------------------------------------------------
+.draftIndicator {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $ms-font-size-s;
+}
+
+.draftDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.draftUnsaved  { background: $color-neutral; }
+.draftSaving   { background: $color-warning; animation: pulse 1s ease-in-out infinite; }
+.draftSaved    { background: $color-success; }
+.draftError    { background: $color-error; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+.draftLabel {
+  color: $color-neutral;
+}
+
+.draftTimestamp {
+  color: $ms-color-neutralTertiary;
+  font-size: $ms-font-size-xs;
+}
+
+// ---------------------------------------------------------------------------
+// Banners
+// ---------------------------------------------------------------------------
+.successBanner,
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius;
+  margin-bottom: $spacing-md;
+  font-size: $ms-font-size-s;
+}
+
+.successBanner {
+  background: rgba($color-success, 0.08);
+  border: 1px solid rgba($color-success, 0.3);
+  color: darken($color-success, 10%);
+}
+
+.errorBanner {
+  background: rgba($color-error, 0.08);
+  border: 1px solid rgba($color-error, 0.3);
+  color: $color-error;
+}
+
+.dismissBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: $ms-font-size-l;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  color: inherit;
+
+  &:hover { opacity: 0.7; }
+}
+
+// ---------------------------------------------------------------------------
+// Form
+// ---------------------------------------------------------------------------
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.fieldLabel {
+  font-size: $ms-font-size-s;
+  font-weight: 600;
+  color: $ms-color-neutralPrimary;
+}
+
+.required {
+  color: $color-error;
+}
+
+.textInput,
+.selectInput {
+  padding: $spacing-sm;
+  border: 1px solid $ms-color-neutralTertiaryAlt;
+  border-radius: $radius;
+  font-size: $ms-font-size-m;
+  font-family: inherit;
+  color: $ms-color-neutralPrimary;
+  background: $ms-color-white;
+  transition: border-color 0.15s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 1px $color-primary;
+  }
+
+  &::placeholder {
+    color: $ms-color-neutralTertiary;
+  }
+}
+
+.inputError {
+  border-color: $color-error !important;
+
+  &:focus {
+    box-shadow: 0 0 0 1px $color-error;
+  }
+}
+
+.fieldMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.charCount {
+  font-size: $ms-font-size-xs;
+  color: $ms-color-neutralTertiary;
+}
+
+.fieldError {
+  font-size: $ms-font-size-xs;
+  color: $color-error;
+}
+
+// ---------------------------------------------------------------------------
+// Tags
+// ---------------------------------------------------------------------------
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  padding: $spacing-sm;
+  border: 1px solid $ms-color-neutralTertiaryAlt;
+  border-radius: $radius;
+  min-height: 38px;
+  align-items: center;
+
+  &:focus-within {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 1px $color-primary;
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: 2px $spacing-sm;
+  background: $ms-color-neutralLighter;
+  border: 1px solid $ms-color-neutralLight;
+  border-radius: 12px;
+  font-size: $ms-font-size-s;
+  color: $ms-color-neutralPrimary;
+}
+
+.tagRemove {
+  background: none;
+  border: none;
+  font-size: $ms-font-size-m;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  color: $color-neutral;
+
+  &:hover { color: $color-error; }
+}
+
+.tagInput {
+  border: none;
+  outline: none;
+  font-size: $ms-font-size-s;
+  flex: 1;
+  min-width: 120px;
+  padding: 2px;
+
+  &::placeholder { color: $ms-color-neutralTertiary; }
+}
+
+// ---------------------------------------------------------------------------
+// Body editor
+// ---------------------------------------------------------------------------
+.bodyHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.previewToggle {
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid $ms-color-neutralTertiaryAlt;
+  border-radius: $radius;
+  background: $ms-color-white;
+  color: $color-primary;
+  font-size: $ms-font-size-s;
+  cursor: pointer;
+
+  &:hover { background: $ms-color-neutralLighter; }
+}
+
+.bodyTextarea {
+  padding: $spacing-sm;
+  border: 1px solid $ms-color-neutralTertiaryAlt;
+  border-radius: $radius;
+  font-size: $ms-font-size-m;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 300px;
+  color: $ms-color-neutralPrimary;
+  background: $ms-color-white;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 1px $color-primary;
+  }
+
+  &::placeholder { color: $ms-color-neutralTertiary; }
+}
+
+.previewPane {
+  padding: $spacing-md;
+  border: 1px solid $ms-color-neutralLight;
+  border-radius: $radius;
+  background: $ms-color-neutralLighter;
+  min-height: 300px;
+  line-height: 1.6;
+  color: $ms-color-neutralPrimary;
+
+  h1, h2, h3 {
+    margin: 0.5em 0 0.3em;
+    color: $ms-color-neutralPrimary;
+  }
+
+  h1 { font-size: $ms-font-size-xxl; }
+  h2 { font-size: $ms-font-size-xl; }
+  h3 { font-size: $ms-font-size-l; }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  ul {
+    padding-left: $spacing-lg;
+    margin: 0.5em 0;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+}
+
+.markdownHint {
+  font-size: $ms-font-size-xs;
+  color: $ms-color-neutralTertiary;
+  font-style: italic;
+}
+
+// ---------------------------------------------------------------------------
+// Attachments
+// ---------------------------------------------------------------------------
+.attachmentArea {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.attachButton {
+  align-self: flex-start;
+  padding: $spacing-sm $spacing-md;
+  border: 1px dashed $ms-color-neutralTertiaryAlt;
+  border-radius: $radius;
+  background: $ms-color-neutralLighter;
+  color: $color-primary;
+  font-size: $ms-font-size-s;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover { background: $ms-color-neutralLight; }
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.attachmentList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.attachmentItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-xs $spacing-sm;
+  background: $ms-color-neutralLighter;
+  border-radius: $radius;
+  font-size: $ms-font-size-s;
+}
+
+.attachmentName {
+  color: $ms-color-neutralPrimary;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachmentSize {
+  color: $ms-color-neutralTertiary;
+  flex-shrink: 0;
+}
+
+.attachmentRemove {
+  background: none;
+  border: none;
+  color: $color-neutral;
+  font-size: $ms-font-size-m;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover { color: $color-error; }
+}
+
+// ---------------------------------------------------------------------------
+// Actions
+// ---------------------------------------------------------------------------
+.actions {
+  display: flex;
+  gap: $spacing-sm;
+  padding-top: $spacing-md;
+  border-top: 1px solid $ms-color-neutralLight;
+}
+
+.draftButton {
+  padding: $spacing-sm $spacing-lg;
+  border: 1px solid $ms-color-neutralTertiaryAlt;
+  border-radius: $radius;
+  background: $ms-color-white;
+  color: $ms-color-neutralPrimary;
+  font-size: $ms-font-size-m;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover { background: $ms-color-neutralLighter; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.submitButton {
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $radius;
+  background: $color-primary;
+  color: $ms-color-white;
+  font-size: $ms-font-size-m;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover { background: darken($color-primary, 8%); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+  &:focus-visible { outline: 2px solid $color-primary; outline-offset: 2px; }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+@media (max-width: 640px) {
+  .contentSubmission {
+    padding: $spacing-md;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .draftButton,
+  .submitButton {
+    width: 100%;
+    text-align: center;
+  }
+}
